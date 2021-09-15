@@ -9,5 +9,5 @@ int main(int argc, char** argv)  {
 	auto pPrefs = new ui::CPrefManager(nullptr);
 	pPrefs->show();
 	
-	return app.exec();
+	return QApplication::exec();
 }
