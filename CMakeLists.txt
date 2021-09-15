@@ -33,6 +33,8 @@ set(SRC
 	Preferences.cpp
 	FileSelector.h
 	FileSelector.cpp
+	GoToDialog.cpp
+	GoToDialog.h 
 	PrefSlider.h
 	PrefSlider.cpp)
 
