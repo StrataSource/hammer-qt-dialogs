@@ -7,7 +7,8 @@ int main(int argc, char** argv)  {
 	QApplication app(argc, argv);
 	
 	auto pZoo = new ui::CZoo(nullptr);
-	pZoo->show();
+    pZoo->setAttribute(Qt::WA_DeleteOnClose);
+    pZoo->show();
 	
 	return QApplication::exec();
 }

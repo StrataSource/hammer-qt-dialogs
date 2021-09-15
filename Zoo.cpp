@@ -37,23 +37,27 @@ CZoo::CZoo(QWidget* pParent) :
 void CZoo::onFileSelectorPressed()
 {
     auto pFileSelector = new ui::CFileSelector(nullptr, CFileSelector::DirsOnly);
+    pFileSelector->setAttribute(Qt::WA_DeleteOnClose);
     pFileSelector->show();
 }
 
 void CZoo::onGoToBrushPressed()
 {
     auto pGoToBrush = new ui::CGoToBrushDialog(nullptr);
+    pGoToBrush->setAttribute(Qt::WA_DeleteOnClose);
     pGoToBrush->show();
 }
 
 void CZoo::onGoToCoordPressed()
 {
     auto pGoToCoord = new ui::CGoToCoordDialog(nullptr);
+    pGoToCoord->setAttribute(Qt::WA_DeleteOnClose);
     pGoToCoord->show();
 }
 
 void CZoo::onPreferencesPressed()
 {
     auto pPreferences = new ui::CPrefManager(nullptr);
+    pPreferences->setAttribute(Qt::WA_DeleteOnClose);
     pPreferences->show();
 }
