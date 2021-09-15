@@ -6,58 +6,62 @@
 
 using namespace ui;
 
+
+struct zooDialog_t
+{
+	const char* name;
+	QDialog* (*makefn)();
+};
+// Default dialog factory
+template<typename T>
+QDialog* makeZooDialog()
+{
+	return new T(nullptr);
+}
+
+
+// Specialization for File Selector
+template<>
+QDialog* makeZooDialog<CFileSelector>()
+{
+	return (QDialog*)new CFileSelector(nullptr, CFileSelector::DirsOnly);
+}
+
+
+// List of all dialogs to display in the zoo
+static zooDialog_t s_zooDialogs[] =
+{
+	{"File Selector", makeZooDialog<CFileSelector>   },
+	{"Go To Brush",   makeZooDialog<CGoToBrushDialog>},
+	{"Go To Coord",   makeZooDialog<CGoToCoordDialog>},
+	{"Preferences",   makeZooDialog<CPrefManager>    },
+};
+static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
+
+
 CZoo::CZoo(QWidget* pParent) :
         QDialog(pParent)
 {
     this->setWindowTitle(tr("You're a Qt :)"));
     this->setMinimumWidth(300);
+    
+	auto* pLayout = new QVBoxLayout(this);
 
-    m_pFileSelector = new QPushButton(this);
-    m_pFileSelector->setText(tr("File Selector"));
-    m_pGoToBrush = new QPushButton(this);
-    m_pGoToBrush->setText(tr("Go To Brush"));
-    m_pGoToCoord = new QPushButton(this);
-    m_pGoToCoord->setText(tr("Go To Coord"));
-    m_pPreferences = new QPushButton(this);
-    m_pPreferences->setText(tr("Preferences"));
+	for(int i = 0; i < s_zooDialogCount; i++)
+	{
+		// Make a button for this dialog
+		QPushButton* pButton = new QPushButton(this);
+		pButton->setText(tr(s_zooDialogs[i].name));
+		pLayout->addWidget(pButton);
 
-    auto* pLayout = new QVBoxLayout(this);
-    pLayout->addWidget(m_pFileSelector);
-    pLayout->addWidget(m_pGoToBrush);
-    pLayout->addWidget(m_pGoToCoord);
-    pLayout->addWidget(m_pPreferences);
+		// On button press, call the function for creating the dialog and display it
+		connect(pButton, &QPushButton::released, this,
+			[=]() {
+				QDialog* pDialog = s_zooDialogs[i].makefn();
+				pDialog->setAttribute(Qt::WA_DeleteOnClose);
+				pDialog->show();
+			});
+	}
+    
     this->setLayout(pLayout);
-
-    connect(m_pFileSelector, &QPushButton::released, this, &CZoo::onFileSelectorPressed);
-    connect(m_pGoToBrush, &QPushButton::released, this, &CZoo::onGoToBrushPressed);
-    connect(m_pGoToCoord, &QPushButton::released, this, &CZoo::onGoToCoordPressed);
-    connect(m_pPreferences, &QPushButton::released, this, &CZoo::onPreferencesPressed);
-}
-
-void CZoo::onFileSelectorPressed()
-{
-    auto pFileSelector = new ui::CFileSelector(nullptr, CFileSelector::DirsOnly);
-    pFileSelector->setAttribute(Qt::WA_DeleteOnClose);
-    pFileSelector->show();
-}
-
-void CZoo::onGoToBrushPressed()
-{
-    auto pGoToBrush = new ui::CGoToBrushDialog(nullptr);
-    pGoToBrush->setAttribute(Qt::WA_DeleteOnClose);
-    pGoToBrush->show();
-}
-
-void CZoo::onGoToCoordPressed()
-{
-    auto pGoToCoord = new ui::CGoToCoordDialog(nullptr);
-    pGoToCoord->setAttribute(Qt::WA_DeleteOnClose);
-    pGoToCoord->show();
-}
-
-void CZoo::onPreferencesPressed()
-{
-    auto pPreferences = new ui::CPrefManager(nullptr);
-    pPreferences->setAttribute(Qt::WA_DeleteOnClose);
-    pPreferences->show();
 }
