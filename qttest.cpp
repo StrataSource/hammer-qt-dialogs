@@ -1,13 +1,13 @@
 
 #include <QApplication>
 
-#include "Preferences.h"
+#include "Zoo.h"
 
 int main(int argc, char** argv)  {
 	QApplication app(argc, argv);
 	
-	auto pPrefs = new ui::CPrefManager(nullptr);
-	pPrefs->show();
+	auto pZoo = new ui::CZoo(nullptr);
+	pZoo->show();
 	
 	return QApplication::exec();
 }

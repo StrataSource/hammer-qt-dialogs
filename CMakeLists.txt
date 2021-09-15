@@ -36,7 +36,9 @@ set(SRC
 	GoToDialog.cpp
 	GoToDialog.h 
 	PrefSlider.h
-	PrefSlider.cpp)
+	PrefSlider.cpp
+	Zoo.h
+	Zoo.cpp)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets Core Gui)
 	
