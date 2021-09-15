@@ -38,7 +38,9 @@ set(SRC
 	PrefSlider.h
 	PrefSlider.cpp
 	Zoo.h
-	Zoo.cpp)
+	Zoo.cpp
+	RunMapNormal.h
+	RunMapNormal.cpp)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets Core Gui)
 	
