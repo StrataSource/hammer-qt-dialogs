@@ -4,7 +4,7 @@
 #include <QIntValidator>
 #include <QFontDatabase>
 
-#include "GoToDialog.h"
+#include "GoTo.h"
 
 using namespace ui;
 

@@ -2,8 +2,9 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
-#include "Preferences.h"
-#include "PrefSlider.h"
+#include "widgets/FileSelector.h"
+#include "Options.h"
+#include "widgets/PrefSlider.h"
 
 using namespace ui; 
 

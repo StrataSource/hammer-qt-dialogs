@@ -31,20 +31,27 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
 set(SRC
+	# Dialogs
+	dialogs/Options.h
+	dialogs/Options.cpp
+	dialogs/GoTo.cpp
+	dialogs/GoTo.h 
+	dialogs/RunMapNormal.h
+	dialogs/RunMapNormal.cpp
+	
+	# Widgets 
+	widgets/FileSelector.h
+	widgets/FileSelector.cpp
+	widgets/PrefSlider.h
+	widgets/PrefSlider.cpp
+	
+	# Everything else
 	qttest.cpp
-	Preferences.h
-	Preferences.cpp
-	FileSelector.h
-	FileSelector.cpp
-	GoToDialog.cpp
-	GoToDialog.h 
-	PrefSlider.h
-	PrefSlider.cpp
 	Zoo.h
 	Zoo.cpp
-	RunMapNormal.h
-	RunMapNormal.cpp
 	MapInformation.h
 	MapInformation.cpp)
 

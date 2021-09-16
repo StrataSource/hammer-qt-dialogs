@@ -1,9 +1,8 @@
 #include "Zoo.h"
 
-#include "FileSelector.h"
-#include "GoToDialog.h"
-#include "Preferences.h"
-#include "RunMapNormal.h"
+#include "dialogs/GoTo.h"
+#include "dialogs/Options.h"
+#include "dialogs/RunMapNormal.h"
 #include "MapInformation.h"
 
 using namespace ui;
@@ -21,19 +20,9 @@ QDialog* makeZooDialog()
 	return new T(nullptr);
 }
 
-
-// Specialization for File Selector
-template<>
-QDialog* makeZooDialog<CFileSelector>()
-{
-	return (QDialog*)new CFileSelector(nullptr, CFileSelector::DirsOnly);
-}
-
-
 // List of all dialogs to display in the zoo
 static zooDialog_t s_zooDialogs[] =
 {
-	{"File Selector",   makeZooDialog<CFileSelector>   },
 	{"Go To Brush",     makeZooDialog<CGoToBrushDialog>},
 	{"Go To Coord",     makeZooDialog<CGoToCoordDialog>},
 	{"Preferences",     makeZooDialog<CPrefManager>    },
