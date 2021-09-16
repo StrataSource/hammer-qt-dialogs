@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.15)
 project(qttest CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+	set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install" CACHE PATH "..." FORCE)
+endif()
+
 if(UNIX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 	set(QT_INCLUDE "/usr/include/x86_64-linux-gnu/qt5")
