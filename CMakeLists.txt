@@ -44,7 +44,9 @@ set(SRC
 	Zoo.h
 	Zoo.cpp
 	RunMapNormal.h
-	RunMapNormal.cpp)
+	RunMapNormal.cpp
+	MapInformation.h
+	MapInformation.cpp)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets Core Gui)
 	

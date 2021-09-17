@@ -4,6 +4,7 @@
 #include "GoToDialog.h"
 #include "Preferences.h"
 #include "RunMapNormal.h"
+#include "MapInformation.h"
 
 using namespace ui;
 
@@ -32,11 +33,12 @@ QDialog* makeZooDialog<CFileSelector>()
 // List of all dialogs to display in the zoo
 static zooDialog_t s_zooDialogs[] =
 {
-	{"File Selector",  makeZooDialog<CFileSelector>   },
-	{"Go To Brush",    makeZooDialog<CGoToBrushDialog>},
-	{"Go To Coord",    makeZooDialog<CGoToCoordDialog>},
-	{"Preferences",    makeZooDialog<CPrefManager>    },
-	{"Run Map Normal", makeZooDialog<CRunMapNormal>   },
+	{"File Selector",   makeZooDialog<CFileSelector>   },
+	{"Go To Brush",     makeZooDialog<CGoToBrushDialog>},
+	{"Go To Coord",     makeZooDialog<CGoToCoordDialog>},
+	{"Preferences",     makeZooDialog<CPrefManager>    },
+	{"Run Map Normal",  makeZooDialog<CRunMapNormal>   },
+	{"Map Information", makeZooDialog<CMapInformation> },
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
