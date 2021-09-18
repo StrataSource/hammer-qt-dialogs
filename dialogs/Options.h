@@ -3,7 +3,7 @@
 #include <QTabWidget>
 #include <QDialog>
 
-#include "FileSelector.h"
+#include "widgets/FileSelector.h"
 
 namespace ui
 {
