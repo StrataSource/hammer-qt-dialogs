@@ -160,7 +160,7 @@ void CKeyBindingDialog::onLoad()
 	static QString prevDir = QDir::currentPath();
 	
 	auto fileToLoad = QFileDialog::getOpenFileName(this, "Load Key Bindings From File", prevDir,
-		"Key Values Files (*.kv)");
+		"Configuration Files (*.cfg)");
 		
 	if(fileToLoad.isEmpty())
 	{
@@ -187,6 +187,8 @@ void CKeyBindingDialog::onCancel()
 			case QMessageBox::Cancel:
 				return;
 			default:
+				KeyBindMgr().LoadFromFile(KEYBINDS_FILE); // QT_TODO: This can probably be done better. But yeah, if the user doesn't save settings and wants to keep the old, 
+														  // 			it'll be saved in the keybinds config already, so just load it.
 				break;
 		}
 	}
