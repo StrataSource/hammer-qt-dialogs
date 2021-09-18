@@ -41,6 +41,8 @@ set(SRC
 	dialogs/GoTo.h 
 	dialogs/RunMapNormal.h
 	dialogs/RunMapNormal.cpp
+	dialogs/MapInformation.h
+	dialogs/MapInformation.cpp
 	
 	# Widgets 
 	widgets/FileSelector.h
@@ -51,9 +53,7 @@ set(SRC
 	# Everything else
 	qttest.cpp
 	Zoo.h
-	Zoo.cpp
-	MapInformation.h
-	MapInformation.cpp)
+	Zoo.cpp)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets Core Gui)
 	

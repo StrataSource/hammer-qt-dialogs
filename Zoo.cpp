@@ -3,7 +3,7 @@
 #include "dialogs/GoTo.h"
 #include "dialogs/Options.h"
 #include "dialogs/RunMapNormal.h"
-#include "MapInformation.h"
+#include "dialogs/MapInformation.h"
 
 using namespace ui;
 

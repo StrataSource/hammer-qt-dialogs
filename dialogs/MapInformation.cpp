@@ -4,7 +4,7 @@
 #include <QListWidget>
 #include <QPushButton>
 
-#include "MapInformation.h"
+#include "dialogs/MapInformation.h"
 
 using namespace ui;
 
