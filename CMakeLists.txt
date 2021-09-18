@@ -56,6 +56,8 @@ set(SRC
 	
 	# Everything else
 	qttest.cpp
+	Utils.cpp
+	Utils.h
 	Zoo.h
 	Zoo.cpp)
 
