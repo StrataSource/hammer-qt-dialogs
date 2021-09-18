@@ -137,6 +137,8 @@ CRunMapNormal::CRunMapNormal(QWidget* pParent) :
 	m_pWaitForKeyCheck->setChecked(false);
 	m_pGameParameters->setText("-dev");
 
+	this->setFixedSize(this->sizeHint());
+
 }
 
 void CRunMapNormal::onExpertPressed()
