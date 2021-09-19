@@ -43,6 +43,8 @@ set(SRC
 	dialogs/RunMapNormal.cpp
 	dialogs/MapInformation.h
 	dialogs/MapInformation.cpp
+	dialogs/EntityReport.h
+	dialogs/EntityReport.cpp
 	
 	# Widgets 
 	widgets/FileSelector.h
