@@ -5,9 +5,9 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QGroupBox.h>
-#include <QRadioButton.h>
-#include <QCheckBox.h>
+#include <QGroupBox>
+#include <QRadioButton>
+#include <QCheckBox>
 
 using namespace ui;
 

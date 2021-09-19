@@ -4,7 +4,7 @@
 #include <QButtonGroup>
 #include <QCheckBox>
 #include <QLineEdit>
-#include <QComboBox.h>
+#include <QComboBox>
 
 namespace ui
 {
