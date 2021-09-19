@@ -4,6 +4,7 @@
 #include "dialogs/Options.h"
 #include "dialogs/RunMapNormal.h"
 #include "dialogs/MapInformation.h"
+#include "dialogs/EntityReport.h"
 
 using namespace ui;
 
@@ -28,6 +29,7 @@ static zooDialog_t s_zooDialogs[] =
 	{"Preferences",     makeZooDialog<CPrefManager>    },
 	{"Run Map Normal",  makeZooDialog<CRunMapNormal>   },
 	{"Map Information", makeZooDialog<CMapInformation> },
+	{"Entity Report",   makeZooDialog<CEntityReport>   },
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
