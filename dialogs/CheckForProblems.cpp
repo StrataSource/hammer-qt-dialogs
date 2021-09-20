@@ -10,7 +10,6 @@
 #include <QPlainTextEdit>
 #include <QDialogButtonBox>
 #include <QPushButton>
-#include <QSizePolicy>
 
 using namespace ui;
 
@@ -18,7 +17,6 @@ CCheckForProblems::CCheckForProblems( QWidget *pParent ) :
 	QDialog( pParent )
 {
 	this->setWindowTitle(tr("Check map for problems"));
-	this->setFixedSize(380, 500);
 
 	auto pDialogLayout = new QVBoxLayout(this);
 
@@ -52,6 +50,10 @@ CCheckForProblems::CCheckForProblems( QWidget *pParent ) :
 	auto pFixButton = pButtonBox->addButton(tr("&Fix"), QDialogButtonBox::ButtonRole::ActionRole);
 	auto pFixAllButton = pButtonBox->addButton(tr("Fix &all (of type)"), QDialogButtonBox::ButtonRole::ActionRole);
 
+	int buttonWidth = pButtonBox->sizeHint().width() + 20; // Pad buttons so centering doesn't act strange
+	pButtonBox->setFixedWidth(buttonWidth);
+	pCloseButtonBox->setFixedWidth(buttonWidth);
+
 	pDescriptionLayout->addWidget(pButtonBox, 0, 1);
 
 	auto pDescriptionGroup = new QGroupBox(tr("Description"), this);
@@ -67,6 +69,8 @@ CCheckForProblems::CCheckForProblems( QWidget *pParent ) :
 	connect( pCloseButton, &QPushButton::released, this, &CCheckForProblems::onClosePressed );
 
 	this->setLayout(pDialogLayout);
+
+	this->setFixedSize(400, 500);
 
 	// QT_TODO: Backend hammer integration
 
