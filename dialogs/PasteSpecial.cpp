@@ -24,7 +24,7 @@ CPasteSpecial::CPasteSpecial(QWidget* pParent) :
 
 	// Copy count
 	auto pCopyCountLabel = new QLabel(this);
-	pCopyCountLabel->setText("Number of copies to paste:");
+	pCopyCountLabel->setText(tr("Number of copies to paste:"));
 	pDialogLayout->addWidget(pCopyCountLabel, row, 0);
 
 	m_pCopyCount = new QLineEdit(this);
@@ -36,8 +36,8 @@ CPasteSpecial::CPasteSpecial(QWidget* pParent) :
 	// Position and group properties
 	m_pStartAtCenterCheckbox = new QCheckBox(this);
 	m_pGroupCopiesCheckbox   = new QCheckBox(this);
-	m_pStartAtCenterCheckbox->setText("Start at center of original");
-	m_pGroupCopiesCheckbox->setText("Group copies");
+	m_pStartAtCenterCheckbox->setText(tr("Start at center of original"));
+	m_pGroupCopiesCheckbox->setText(tr("Group copies"));
 	pDialogLayout->addWidget(m_pStartAtCenterCheckbox, row++, 0);
 	pDialogLayout->addWidget(m_pGroupCopiesCheckbox,   row++, 0);
 
@@ -128,12 +128,12 @@ CPasteSpecial::CPasteSpecial(QWidget* pParent) :
 
 	// Name properties
 	m_pUniqueNamesCheckbox = new QCheckBox(this);
-	m_pUniqueNamesCheckbox->setText("Make pasted entity names unique");
+	m_pUniqueNamesCheckbox->setText(tr("Make pasted entity names unique"));
 	pDialogLayout->addWidget(m_pUniqueNamesCheckbox, row++, 0);
 
 	m_pAddPrefixCheckbox = new QCheckBox(this);
 	m_pNamePrefix        = new QLineEdit(this);
-	m_pAddPrefixCheckbox->setText("Add this prefix to all named entities:");
+	m_pAddPrefixCheckbox->setText(tr("Add this prefix to all named entities:"));
 	m_pNamePrefix->setEnabled(m_pAddPrefixCheckbox->isChecked());
 	pDialogLayout->addWidget(m_pAddPrefixCheckbox, row, 0);
 	pDialogLayout->addWidget(m_pNamePrefix, row, 1);
