@@ -2,6 +2,8 @@
 
 #include <QDialog>
 
+class QLineEdit;
+class QCheckBox;
 namespace ui
 {
 
