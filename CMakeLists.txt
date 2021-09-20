@@ -45,7 +45,9 @@ set(SRC
 	dialogs/MapInformation.cpp
 	dialogs/EntityReport.h
 	dialogs/EntityReport.cpp
-	
+	dialogs/CheckForProblems.h
+	dialogs/CheckForProblems.cpp	
+
 	# Widgets 
 	widgets/FileSelector.h
 	widgets/FileSelector.cpp

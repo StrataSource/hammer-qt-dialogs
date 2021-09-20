@@ -5,6 +5,7 @@
 #include "dialogs/RunMapNormal.h"
 #include "dialogs/MapInformation.h"
 #include "dialogs/EntityReport.h"
+#include "dialogs/CheckForProblems.h"
 
 using namespace ui;
 
@@ -24,12 +25,13 @@ QDialog* makeZooDialog()
 // List of all dialogs to display in the zoo
 static zooDialog_t s_zooDialogs[] =
 {
-	{"Go To Brush",     makeZooDialog<CGoToBrushDialog>},
-	{"Go To Coord",     makeZooDialog<CGoToCoordDialog>},
-	{"Preferences",     makeZooDialog<CPrefManager>    },
-	{"Run Map Normal",  makeZooDialog<CRunMapNormal>   },
-	{"Map Information", makeZooDialog<CMapInformation> },
-	{"Entity Report",   makeZooDialog<CEntityReport>   },
+	{"Go To Brush",            makeZooDialog<CGoToBrushDialog> },
+	{"Go To Coord",            makeZooDialog<CGoToCoordDialog> },
+	{"Preferences",            makeZooDialog<CPrefManager>     },
+	{"Run Map Normal",         makeZooDialog<CRunMapNormal>    },
+	{"Map Information",        makeZooDialog<CMapInformation>  },
+	{"Entity Report",          makeZooDialog<CEntityReport>    },
+	{"Check map for problems", makeZooDialog<CCheckForProblems>},
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
