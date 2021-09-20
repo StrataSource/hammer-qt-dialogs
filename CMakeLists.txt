@@ -47,6 +47,8 @@ set(SRC
 	dialogs/EntityReport.cpp
 	dialogs/CheckForProblems.h
 	dialogs/CheckForProblems.cpp	
+	dialogs/PasteSpecial.h
+	dialogs/PasteSpecial.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
