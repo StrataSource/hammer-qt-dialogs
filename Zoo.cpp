@@ -7,6 +7,7 @@
 #include "dialogs/EntityReport.h"
 #include "dialogs/CheckForProblems.h"
 #include "dialogs/PasteSpecial.h"
+#include "dialogs/MakeHollow.h"
 
 using namespace ui;
 
@@ -33,7 +34,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Map Information",        makeZooDialog<CMapInformation>  },
 	{"Entity Report",          makeZooDialog<CEntityReport>    },
 	{"Check map for problems", makeZooDialog<CCheckForProblems>},
-	{"Paste Special",   makeZooDialog<CPasteSpecial>   },
+	{"Paste Special",		   makeZooDialog<CPasteSpecial>    },
+	{"Make Hollow",			   makeZooDialog<CMakeHollow>      },
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 

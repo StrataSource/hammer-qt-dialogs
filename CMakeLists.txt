@@ -49,6 +49,8 @@ set(SRC
 	dialogs/CheckForProblems.cpp	
 	dialogs/PasteSpecial.h
 	dialogs/PasteSpecial.cpp
+	dialogs/MakeHollow.h
+	dialogs/MakeHollow.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
