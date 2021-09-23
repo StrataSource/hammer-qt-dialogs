@@ -121,5 +121,5 @@ void CSprinkle::onUseGridPressed()
 
 void CSprinkle::changeSliderLabel(int value)
 {
-	m_pSliderLabel->setText(QString("%1\%").arg(value));
+	m_pSliderLabel->setText(QString("%1%").arg(value));
 }
