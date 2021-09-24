@@ -51,6 +51,8 @@ set(SRC
 	dialogs/PasteSpecial.cpp
 	dialogs/Sprinkle.h
 	dialogs/Sprinkle.cpp
+	dialogs/MakeHollow.h
+	dialogs/MakeHollow.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
