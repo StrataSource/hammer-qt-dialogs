@@ -51,6 +51,8 @@ set(SRC
 	dialogs/PasteSpecial.cpp
 	dialogs/FindEntities.h
 	dialogs/FindEntities.cpp
+	dialogs/MakeHollow.h
+	dialogs/MakeHollow.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
