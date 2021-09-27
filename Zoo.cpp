@@ -7,6 +7,7 @@
 #include "dialogs/EntityReport.h"
 #include "dialogs/CheckForProblems.h"
 #include "dialogs/PasteSpecial.h"
+#include "dialogs/FindEntities.h"
 #include "dialogs/Sprinkle.h"
 #include "dialogs/MakeHollow.h"
 
@@ -35,7 +36,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Map Information",        makeZooDialog<CMapInformation>  },
 	{"Entity Report",          makeZooDialog<CEntityReport>    },
 	{"Check map for problems", makeZooDialog<CCheckForProblems>},
-	{"Paste Special",		       makeZooDialog<CPasteSpecial>    },
+	{"Paste Special",   	     makeZooDialog<CPasteSpecial>    },
+	{"Find Entities",		       makeZooDialog<CFindEntities>    },
 	{"Entity Sprinkle",		     makeZooDialog<CSprinkle>        },
 	{"Make Hollow",			       makeZooDialog<CMakeHollow>      },
 };

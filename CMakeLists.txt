@@ -49,6 +49,8 @@ set(SRC
 	dialogs/CheckForProblems.cpp	
 	dialogs/PasteSpecial.h
 	dialogs/PasteSpecial.cpp
+	dialogs/FindEntities.h
+	dialogs/FindEntities.cpp
 	dialogs/Sprinkle.h
 	dialogs/Sprinkle.cpp
 	dialogs/MakeHollow.h
