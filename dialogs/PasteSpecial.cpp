@@ -16,7 +16,7 @@ CPasteSpecial::CPasteSpecial(QWidget* pParent) :
 	QDialog(pParent)
 {
 	this->setWindowTitle(tr("Paste Special"));
-	this->setFixedSize(this->sizeHint());
+	this->setMinimumSize(this->sizeHint());
 
 	auto pDialogLayout = new QGridLayout(this);
 	pDialogLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
