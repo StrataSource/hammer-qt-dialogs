@@ -12,7 +12,6 @@ CMapInformation::CMapInformation(QWidget* pParent) :
 	QDialog(pParent)
 {
 	this->setWindowTitle(tr("Map Information"));
-	this->setFixedSize(275, 275);
 	
 	auto pDialogLayout = new QVBoxLayout(this);
 
@@ -84,6 +83,8 @@ CMapInformation::CMapInformation(QWidget* pParent) :
 		pMaterialList->addItem("cool/material");
 		pMaterialList->addItem("nice/material");
 	}
+	
+	this->setMinimumSize(this->sizeHint());
 }
 
 void CMapInformation::onClosePressed()
