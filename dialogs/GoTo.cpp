@@ -42,8 +42,8 @@ CGoToCoordDialog::CGoToCoordDialog(QWidget* pParent) :
 
 	this->setLayout(pLayout);
 	
-	this->setMinimumWidth(250);
-	this->setMaximumHeight(0); // Disable vertical resize
+	this->setMinimumSize(this->sizeHint());
+	this->setMaximumHeight(0); // Disable vertical resize 
 		
 	connect(m_pGo, &QPushButton::released, this, &CGoToCoordDialog::onGoPressed);
 	connect(m_pCancel, &QPushButton::released, this, &CGoToCoordDialog::onCancelPressed);
@@ -88,7 +88,7 @@ CGoToBrushDialog::CGoToBrushDialog(QWidget* pParent) :
 	
 	this->setLayout(pLayout);
 	
-	this->setMinimumWidth(250);
+	this->setMinimumSize(this->sizeHint());
 	this->setMaximumHeight(0); // Disable vertical resize
 	
 	connect(m_pGo, &QPushButton::released, this, &CGoToBrushDialog::onGoPressed);
