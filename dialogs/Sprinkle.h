@@ -19,11 +19,11 @@ namespace ui
 		QComboBox *m_pModeBox;
 		QSlider *m_pDensitySlider;
 
-		QPlainTextEdit *m_pGridOffsetX;
-		QPlainTextEdit *m_pGridOffsetY;
+		QLineEdit *m_pGridOffsetX;
+		QLineEdit *m_pGridOffsetY;
 
-		QPlainTextEdit *m_pGridSizeX;
-		QPlainTextEdit *m_pGridSizeY;
+		QLineEdit *m_pGridSizeX;
+		QLineEdit *m_pGridSizeY;
 
 		QCheckBox *m_pUseDefinitionGridSize;
 		QCheckBox *m_pRandomYaw;
