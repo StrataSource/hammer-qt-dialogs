@@ -34,7 +34,8 @@ CMakeHollow::CMakeHollow(QWidget* pParent) :
 	connect(pOKButton, &QPushButton::released, this, &CMakeHollow::onOKPressed);
 	connect(pCloseButton, &QPushButton::released, this, &CMakeHollow::onClosePressed);
 
-	this->setFixedSize(this->sizeHint());
+	this->setMinimumSize(this->sizeHint());
+	this->setMaximumHeight(0); // Disable Y axis resize
 }
 
 void CMakeHollow::onOKPressed()
