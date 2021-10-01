@@ -11,7 +11,7 @@ CMakeHollow::CMakeHollow(QWidget* pParent) :
 	QDialog(pParent)
 {
 	this->setWindowTitle(tr("Hammer"));
-	this->setFixedSize(280, 100);
+	this->setFixedSize(280, 145);
 
 	auto pDialogLayout = new QVBoxLayout(this);
 	pDialogLayout->setAlignment(Qt::AlignLeft);
