@@ -11,7 +11,6 @@ CFindEntities::CFindEntities(QWidget* pParent) :
 	QDialog(pParent)
 {
 	this->setWindowTitle(tr("Find Entities"));
-	this->setFixedSize(280, 100);
 
 	auto pDialogLayout = new QVBoxLayout(this);
 	pDialogLayout->setAlignment(Qt::AlignLeft);
@@ -32,6 +31,9 @@ CFindEntities::CFindEntities(QWidget* pParent) :
 
 	connect(pOKButton, &QPushButton::released, this, &CFindEntities::onOKPressed);
 	connect(pCloseButton, &QPushButton::released, this, &CFindEntities::onClosePressed);
+
+	this->setMinimumSize(this->sizeHint());
+	this->setMaximumHeight(0); // Disable height resize
 
 }
 

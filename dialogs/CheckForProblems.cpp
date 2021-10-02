@@ -70,8 +70,6 @@ CCheckForProblems::CCheckForProblems( QWidget *pParent ) :
 
 	this->setLayout(pDialogLayout);
 
-	this->setFixedSize(400, 500);
-
 	// QT_TODO: Backend hammer integration
 
 	for ( int i = 0; i < 200; i++ )
@@ -86,7 +84,7 @@ CCheckForProblems::CCheckForProblems( QWidget *pParent ) :
 		"the target entity. Fixing this error deletes the bad connections." 
 	);
 
-
+	this->setMinimumSize(this->sizeHint());
 }
 
 void CCheckForProblems::onGoToPressed()

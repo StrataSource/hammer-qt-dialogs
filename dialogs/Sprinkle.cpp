@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QFontMetrics>
 #include <QHBoxLayout>
+#include <QLineEdit>
 
 using namespace ui;
 
@@ -12,7 +13,6 @@ CSprinkle::CSprinkle( QWidget *pParent ) :
 	QDialog( pParent )
 {
 	this->setWindowTitle(tr("Entity Sprinkle"));
-	this->setFixedSize(320, 205);
 
 	auto pDialogLayout = new QGridLayout(this);
 
@@ -40,12 +40,18 @@ CSprinkle::CSprinkle( QWidget *pParent ) :
 	pSliderLayout->addWidget(m_pSliderLabel, 15);
 
 	// Grid
-	m_pGridOffsetX = new QPlainTextEdit(this);
-	m_pGridOffsetY = new QPlainTextEdit(this);
+	m_pGridOffsetX = new QLineEdit(this);
+	m_pGridOffsetY = new QLineEdit(this);
 
-	m_pGridSizeX = new QPlainTextEdit(this);
-	m_pGridSizeY = new QPlainTextEdit(this);
+	m_pGridSizeX = new QLineEdit(this);
+	m_pGridSizeY = new QLineEdit(this);
 	auto pUseGridButton = new QPushButton(tr("Use Grid"));
+	
+	// Set validators 
+	m_pGridOffsetX->setValidator(new QDoubleValidator(this));
+	m_pGridOffsetY->setValidator(new QDoubleValidator(this));
+	m_pGridSizeX->setValidator(new QDoubleValidator(this));
+	m_pGridSizeY->setValidator(new QDoubleValidator(this));
 
 	m_pUseDefinitionGridSize = new QCheckBox(tr("Use Grid Size from Definition"), this);
 	m_pRandomYaw = new QCheckBox(tr("Random Yaw"), this);
@@ -103,13 +109,15 @@ CSprinkle::CSprinkle( QWidget *pParent ) :
 	m_pUseDefinitionGridSize->setChecked(true);
 	m_pGridSizeX->setEnabled(false);
 	m_pGridSizeY->setEnabled(false);
-	m_pGridSizeX->setPlainText("1");
-	m_pGridSizeY->setPlainText("1");
+	m_pGridSizeX->setText("1");
+	m_pGridSizeY->setText("1");
 
 	connect(pUseGridButton, &QPushButton::released, this, &CSprinkle::onUseGridPressed);
 	connect(m_pDensitySlider, &QSlider::valueChanged, this, &CSprinkle::changeSliderLabel);
 	connect(m_pUseDefinitionGridSize, SIGNAL(toggled(bool)), m_pGridSizeX, SLOT(setDisabled(bool)));
 	connect(m_pUseDefinitionGridSize, SIGNAL(toggled(bool)), m_pGridSizeY, SLOT(setDisabled(bool)));
+	
+	this->setFixedSize(this->sizeHint());
 }
 
 void CSprinkle::onUseGridPressed()

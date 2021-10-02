@@ -10,8 +10,7 @@ using namespace ui;
 CMakeHollow::CMakeHollow(QWidget* pParent) :
 	QDialog(pParent)
 {
-	this->setWindowTitle(tr("Hammer"));
-	this->setFixedSize(280, 100);
+	this->setWindowTitle(tr("Make Hollow"));
 
 	auto pDialogLayout = new QVBoxLayout(this);
 	pDialogLayout->setAlignment(Qt::AlignLeft);
@@ -35,6 +34,8 @@ CMakeHollow::CMakeHollow(QWidget* pParent) :
 	connect(pOKButton, &QPushButton::released, this, &CMakeHollow::onOKPressed);
 	connect(pCloseButton, &QPushButton::released, this, &CMakeHollow::onClosePressed);
 
+	this->setMinimumSize(this->sizeHint());
+	this->setMaximumHeight(0); // Disable Y axis resize
 }
 
 void CMakeHollow::onOKPressed()
