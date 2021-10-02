@@ -56,6 +56,9 @@ set(SRC
 	dialogs/MakeHollow.h
 	dialogs/MakeHollow.cpp
 
+	dialogs/ReplaceTextures.h
+	dialogs/ReplaceTextures.cpp
+
 	# Widgets 
 	widgets/FileSelector.h
 	widgets/FileSelector.cpp
