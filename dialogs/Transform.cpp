@@ -3,6 +3,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QDoubleValidator>
+#include <QPushButton>
 
 using namespace ui;
 
