@@ -13,7 +13,6 @@
 
 using namespace ui;
 
-
 struct zooDialog_t
 {
 	const char* name;
@@ -29,17 +28,17 @@ QDialog* makeZooDialog()
 // List of all dialogs to display in the zoo
 static zooDialog_t s_zooDialogs[] =
 {
-	{"Go To Brush",            makeZooDialog<CGoToBrushDialog> },
-	{"Go To Coord",            makeZooDialog<CGoToCoordDialog> },
-	{"Preferences",            makeZooDialog<CPrefManager>     },
-	{"Run Map Normal",         makeZooDialog<CRunMapNormal>    },
-	{"Map Information",        makeZooDialog<CMapInformation>  },
-	{"Entity Report",          makeZooDialog<CEntityReport>    },
-	{"Check map for problems", makeZooDialog<CCheckForProblems>},
-	{"Paste Special",   	     makeZooDialog<CPasteSpecial>    },
-	{"Find Entities",		       makeZooDialog<CFindEntities>    },
-	{"Entity Sprinkle",		     makeZooDialog<CSprinkle>        },
-	{"Make Hollow",			       makeZooDialog<CMakeHollow>      },
+	{"Go To Brush",				makeZooDialog<CGoToBrushDialog> },
+	{"Go To Coord",				makeZooDialog<CGoToCoordDialog> },
+	{"Preferences",				makeZooDialog<CPrefManager>     },
+	{"Run Map Normal",			makeZooDialog<CRunMapNormal>    },
+	{"Map Information",			makeZooDialog<CMapInformation>  },
+	{"Entity Report",			makeZooDialog<CEntityReport>    },
+	{"Check map for problems",	makeZooDialog<CCheckForProblems>},
+	{"Paste Special",			makeZooDialog<CPasteSpecial>    },
+	{"Find Entities",			makeZooDialog<CFindEntities>    },
+	{"Entity Sprinkle",			makeZooDialog<CSprinkle>        },
+	{"Make Hollow",				makeZooDialog<CMakeHollow>      },
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
