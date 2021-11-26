@@ -14,7 +14,7 @@ CSmoothingGroups::CSmoothingGroups( QWidget *pParent ) :
 	auto pDialogLayout = new QVBoxLayout( this );
 
 	// Smooth
-	auto pSmoothGroup = new QGroupBox( tr( "Smooth" ) );
+	auto pSmoothGroup = new QGroupBox( tr( "Smooth" ), this );
 	auto pSmoothLayout = new QGridLayout( pSmoothGroup );
 	pSmoothLayout->setVerticalSpacing( 0 );
 	pSmoothLayout->setHorizontalSpacing( 0 );
@@ -42,7 +42,7 @@ CSmoothingGroups::CSmoothingGroups( QWidget *pParent ) :
 
 	// Hard
 	row = 0;
-	auto pHardGroup = new QGroupBox( tr( "Hard" ) );
+	auto pHardGroup = new QGroupBox( tr( "Hard" ), this );
 	auto pHardLayout = new QGridLayout( pHardGroup );
 	pHardLayout->setVerticalSpacing( 0 );
 	pHardLayout->setHorizontalSpacing( 0 );
