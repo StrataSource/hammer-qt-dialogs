@@ -48,6 +48,7 @@ CZoo::CZoo(QWidget* pParent) :
 {
     this->setWindowTitle(tr("You're a Qt :)"));
     this->setMinimumWidth(300);
+	this->setWindowFlag(Qt::WindowContextHelpButtonHint, false);
     
 	auto* pLayout = new QVBoxLayout(this);
 
@@ -63,6 +64,7 @@ CZoo::CZoo(QWidget* pParent) :
 			[=]() {
 				QDialog* pDialog = s_zooDialogs[i].makefn();
 				pDialog->setAttribute(Qt::WA_DeleteOnClose);
+				pDialog->setWindowFlag(Qt::WindowContextHelpButtonHint, false);
 				pDialog->show();
 			});
 	}
