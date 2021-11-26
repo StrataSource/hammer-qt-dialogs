@@ -71,6 +71,8 @@ set(SRC
 	dialogs/MapDiff.cpp
 	dialogs/MoveToVisgroup.h
 	dialogs/MoveToVisgroup.cpp
+	dialogs/SoundBrowser.h
+	dialogs/SoundBrowser.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
