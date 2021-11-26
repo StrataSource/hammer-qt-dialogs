@@ -6,6 +6,7 @@
 #include <QLabel>
 
 using namespace ui;
+
 CSmoothingGroups::CSmoothingGroups( QWidget *pParent ) :
 	QDialog( pParent )
 {
