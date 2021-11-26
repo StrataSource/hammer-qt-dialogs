@@ -10,9 +10,9 @@
 #include "dialogs/FindEntities.h"
 #include "dialogs/Sprinkle.h"
 #include "dialogs/MakeHollow.h"
+#include "dialogs/Transform.h"
 
 using namespace ui;
-
 
 struct zooDialog_t
 {
@@ -29,17 +29,18 @@ QDialog* makeZooDialog()
 // List of all dialogs to display in the zoo
 static zooDialog_t s_zooDialogs[] =
 {
-	{"Go To Brush",            makeZooDialog<CGoToBrushDialog> },
-	{"Go To Coord",            makeZooDialog<CGoToCoordDialog> },
-	{"Preferences",            makeZooDialog<CPrefManager>     },
-	{"Run Map Normal",         makeZooDialog<CRunMapNormal>    },
-	{"Map Information",        makeZooDialog<CMapInformation>  },
-	{"Entity Report",          makeZooDialog<CEntityReport>    },
-	{"Check map for problems", makeZooDialog<CCheckForProblems>},
-	{"Paste Special",   	     makeZooDialog<CPasteSpecial>    },
-	{"Find Entities",		       makeZooDialog<CFindEntities>    },
-	{"Entity Sprinkle",		     makeZooDialog<CSprinkle>        },
-	{"Make Hollow",			       makeZooDialog<CMakeHollow>      },
+	{"Go To Brush",				makeZooDialog<CGoToBrushDialog> },
+	{"Go To Coord",				makeZooDialog<CGoToCoordDialog> },
+	{"Preferences",				makeZooDialog<CPrefManager>     },
+	{"Run Map Normal",			makeZooDialog<CRunMapNormal>    },
+	{"Map Information",			makeZooDialog<CMapInformation>  },
+	{"Entity Report",			makeZooDialog<CEntityReport>    },
+	{"Check map for problems",	makeZooDialog<CCheckForProblems>},
+	{"Paste Special",			makeZooDialog<CPasteSpecial>    },
+	{"Find Entities",			makeZooDialog<CFindEntities>    },
+	{"Entity Sprinkle",			makeZooDialog<CSprinkle>        },
+	{"Make Hollow",				makeZooDialog<CMakeHollow>      },
+	{"Transformation",			makeZooDialog<CTransform>		}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
@@ -49,6 +50,7 @@ CZoo::CZoo(QWidget* pParent) :
 {
     this->setWindowTitle(tr("You're a Qt :)"));
     this->setMinimumWidth(300);
+	this->setWindowFlag(Qt::WindowContextHelpButtonHint, false);
     
 	auto* pLayout = new QVBoxLayout(this);
 
@@ -64,6 +66,7 @@ CZoo::CZoo(QWidget* pParent) :
 			[=]() {
 				QDialog* pDialog = s_zooDialogs[i].makefn();
 				pDialog->setAttribute(Qt::WA_DeleteOnClose);
+				pDialog->setWindowFlag(Qt::WindowContextHelpButtonHint, false);
 				pDialog->show();
 			});
 	}
