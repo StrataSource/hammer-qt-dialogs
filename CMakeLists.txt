@@ -57,6 +57,8 @@ set(SRC
 	dialogs/MakeHollow.cpp
 	dialogs/Transform.h
 	dialogs/Transform.cpp
+	dialogs/SmoothingGroups.h
+	dialogs/SmoothingGroups.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
