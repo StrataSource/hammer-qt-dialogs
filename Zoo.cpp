@@ -13,6 +13,7 @@
 #include "dialogs/Transform.h"
 #include "dialogs/SmoothingGroups.h"
 #include "dialogs/EntityHelp.h"
+#include "dialogs/EditVisgroups.h"
 
 using namespace ui;
 
@@ -44,7 +45,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Make Hollow",				makeZooDialog<CMakeHollow>      },
 	{"Transformation",			makeZooDialog<CTransform>		},
 	{"Smoothing Groups",		makeZooDialog<CSmoothingGroups>	},
-	{"Entity Help",				makeZooDialog<CEntityHelp>		}
+	{"Entity Help",				makeZooDialog<CEntityHelp>		},
+	{"Edit Visgroups",			makeZooDialog<CEditVisgroups>	}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
