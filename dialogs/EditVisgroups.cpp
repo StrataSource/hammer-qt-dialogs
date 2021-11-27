@@ -7,6 +7,7 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QStyleFactory>
+#include <QHeaderView>
 
 using namespace ui;
 
@@ -21,6 +22,10 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	m_pVisgroupTree = new QTreeWidget( this );
 	m_pVisgroupTree->setStyle( QStyleFactory::create( "Windows" ) );
 	m_pVisgroupTree->setHeaderHidden( true );
+
+	// We do this to allow the tree to be scrolled horizontally.. I wish it was easier
+	m_pVisgroupTree->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
+	m_pVisgroupTree->header()->setStretchLastSection( false ); 
 
 	// Add junk to the tree for demo
 	for ( int i = 0; i < 5; i++ )
@@ -38,8 +43,9 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 		m_pVisgroupTree->insertTopLevelItem( i, pTreeItem );
 	}
 	m_pVisgroupTree->expandAll();
+
 	// Select the first index from the tree
-	m_pVisgroupTree->setItemSelected( m_pVisgroupTree->takeTopLevelItem( 0 ), true ); 
+	m_pVisgroupTree->topLevelItem( 0 )->setSelected( true );
 
 	// QT_TODO: Hammer integration, you'll have to handle the code for the visgroup tree
 
