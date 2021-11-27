@@ -17,6 +17,7 @@
 #include "dialogs/FaceEditSheet.h"
 #include "dialogs/Replace.h"
 #include "dialogs/MapDiff.h"
+#include "dialogs/MoveToVisgroup.h"
 
 using namespace ui;
 
@@ -52,7 +53,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Edit Visgroups",			makeZooDialog<CEditVisgroups>	},
 	{"Face Edit Sheet",			makeZooDialog<CFaceEditSheet>	},
 	{"Replace",					makeZooDialog<CReplace>			},
-	{"Map Diff",				makeZooDialog<CMapDiff>			}
+	{"Map Diff",				makeZooDialog<CMapDiff>			},
+	{"Move to visgroup",		makeZooDialog<CMoveToVisgroup>	}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
