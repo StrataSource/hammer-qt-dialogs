@@ -11,6 +11,7 @@
 #include "dialogs/Sprinkle.h"
 #include "dialogs/MakeHollow.h"
 #include "dialogs/Transform.h"
+#include "dialogs/SmoothingGroups.h"
 
 using namespace ui;
 
@@ -40,7 +41,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Find Entities",			makeZooDialog<CFindEntities>    },
 	{"Entity Sprinkle",			makeZooDialog<CSprinkle>        },
 	{"Make Hollow",				makeZooDialog<CMakeHollow>      },
-	{"Transformation",			makeZooDialog<CTransform>		}
+	{"Transformation",			makeZooDialog<CTransform>		},
+	{"Smoothing Groups",		makeZooDialog<CSmoothingGroups>	},
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
