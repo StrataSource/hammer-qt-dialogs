@@ -3,11 +3,10 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QHboxLayout>
-#include <QVboxLayout>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QStyleFactory>
 #include <QHeaderView>
+#include <QColorDialog>
 
 using namespace ui;
 
@@ -20,7 +19,6 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 
 	auto pGroupsLabel = new QLabel( tr( "Groups:" ), this );
 	m_pVisgroupTree = new QTreeWidget( this );
-	m_pVisgroupTree->setStyle( QStyleFactory::create( "Windows" ) );
 	m_pVisgroupTree->setHeaderHidden( true );
 
 	// We do this to allow the tree to be scrolled horizontally.. I wish it was easier
@@ -30,17 +28,14 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	// Add junk to the tree for demo
 	for ( int i = 0; i < 5; i++ )
 	{
-		auto pTreeItem = new QTreeWidgetItem();
+		auto pTreeItem = new QTreeWidgetItem( m_pVisgroupTree );
 		pTreeItem->setText( 0, "Visgroup " + QString::number( i ) );
 
 		for ( int i = 0; i < 5; i++ )
 		{
-			auto pSubTreeItem = new QTreeWidgetItem();
+			auto pSubTreeItem = new QTreeWidgetItem( pTreeItem );
 			pSubTreeItem->setText( 0, "Sub Visgroup " + QString::number( i ) );
-
-			pTreeItem->addChild( pSubTreeItem );
 		}
-		m_pVisgroupTree->insertTopLevelItem( i, pTreeItem );
 	}
 	m_pVisgroupTree->expandAll();
 
@@ -63,7 +58,10 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	m_pColorFrame = new QFrame( this );
 	m_pColorFrame->setFrameShadow( QFrame::Shadow::Sunken );
 	m_pColorFrame->setFrameShape( QFrame::Shape::Panel );
-	setColorFrameColor( 255, 0, 0 );
+
+	// QT_TODO: the visgroup colors will probably have to be converted to QColor
+	// unless you completely change this method, which is fine.
+	setColorFrameColor( Qt::red );
 
 	auto pColorButton = new QPushButton( tr( "Color..." ), this );
 	auto pRemoveButton = new QPushButton( tr( "Remove" ), this );
@@ -90,10 +88,12 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	pButtonLayout->addWidget( pNewGroupButton );
 	pButtonLayout->addWidget( pPurgeEmptyButton );
 	pButtonLayout->addWidget( pCloseButton, 0, Qt::AlignRight );
+	pDialogLayout->setColumnStretch( 0, 1 );
 
 	// Add components to layout
 	row = 0;
 	pDialogLayout->addWidget( pGroupsLabel, row, 0 );
+	pDialogLayout->setRowStretch( 1, 1 );
 	row++;
 
 	// 1
@@ -115,15 +115,21 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	connect( pColorButton, &QPushButton::released, this, &CEditVisgroups::onColorPressed );
 	connect( pRemoveButton, &QPushButton::released, this, &CEditVisgroups::onRemovePressed );
 
-	this->setFixedSize( this->sizeHint() );
+	// Set minimum size after all components are initialised
+	this->setMinimumSize( this->sizeHint() );
 }
 
-void CEditVisgroups::setColorFrameColor( int r, int g, int b )
+void CEditVisgroups::setColorFrameColor( const QColor& pNewColor )
 {
-	if ( m_pColorFrame == nullptr )
+	if ( !m_pColorFrame )
 		return;
 
-	m_pColorFrame->setStyleSheet( "background-color: rgb(" + QString::number( r ) + "," + QString::number( g ) + "," + QString::number( b ) + ")" );
+	m_pColorFrameColor = pNewColor;
+
+	char buf[256];
+	snprintf( buf, sizeof( buf ), "background-color: rgb(%i, %i, %i)", pNewColor.red(), pNewColor.green(), pNewColor.blue() );
+
+	m_pColorFrame->setStyleSheet( buf );
 }
 
 void CEditVisgroups::onNewGroupPressed()
@@ -143,7 +149,8 @@ void CEditVisgroups::onClosePressed()
 
 void CEditVisgroups::onColorPressed()
 {
-	// QT_TODO: Hammer integration
+	m_pColorFrameColor = QColorDialog::getColor( m_pColorFrameColor, this );
+	setColorFrameColor( m_pColorFrameColor );
 }
 
 void CEditVisgroups::onRemovePressed()

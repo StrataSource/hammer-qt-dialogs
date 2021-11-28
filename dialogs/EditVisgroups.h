@@ -4,6 +4,7 @@
 #include <QTreeWidget>
 #include <QLineEdit>
 #include <QFrame>
+#include <QColor>
 
 namespace ui
 {
@@ -18,8 +19,9 @@ namespace ui
 		QFrame *m_pColorFrame;
 
 	private:
-		// The parameter here can be changed as fit, for now I set it to QColor
-		void setColorFrameColor( int r, int g, int b );
+		void setColorFrameColor( const QColor &pNewColor );
+
+		QColor m_pColorFrameColor;
 
 	private slots:
 		void onNewGroupPressed();
