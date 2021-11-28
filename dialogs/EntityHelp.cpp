@@ -13,7 +13,6 @@ CEntityHelp::CEntityHelp( QWidget *pParent ) :
 	auto pDialogLayout = new QVBoxLayout( this );
 
 	m_pEntityHelpBox = new QTextEdit( this );
-	m_pEntityHelpBox->setStyleSheet( "font: 14px serif;" );
 	m_pEntityHelpBox->setReadOnly( true );
 
 	pDialogLayout->addWidget( m_pEntityHelpBox );
@@ -27,7 +26,7 @@ CEntityHelp::CEntityHelp( QWidget *pParent ) :
 
 void CEntityHelp::setEntity()
 {
-	if ( m_pEntityHelpBox == nullptr )
+	if ( !m_pEntityHelpBox )
 		return;
 
 	// Entity name
@@ -50,17 +49,17 @@ void CEntityHelp::setEntity()
 	addText( "OnUser1", "", "", "Fired in response to FireUser1 input." );
 }
 
-void CEntityHelp::addText( QString pFriendlyName, QString pRawName, QString pType, QString pDescription )
+void CEntityHelp::addText( const QString &pFriendlyName, const QString &pRawName, const QString &pType, const QString &pDescription )
 {
-	QString text = "<b>" + pFriendlyName + "</b>";
+	QStringList text;
+	text << "<b>" << pFriendlyName << "</b>";
 
-	// Probably might want to be redone or something
 	if ( pRawName != "" )
-		text += " <u><i>" + pRawName + "</i></u>";
+		text << " <u><i>" << pRawName << "</i></u>";
 	if ( pType != "" )
-		text += " <i>&lt;<font color=\"blue\">" + pType + "</font>&gt;</i>";
+		text << " <i>&lt;<font color=\"blue\">" << pType << "</font>&gt;</i>";
 	if ( pDescription != "" )
-		text += " " + pDescription;
+		text << " " << pDescription;
 
-	m_pEntityHelpBox->append( text );
+	m_pEntityHelpBox->append( text.join( "" ) );
 }

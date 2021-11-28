@@ -21,6 +21,6 @@ namespace ui
 		void setEntity();
 
 	private:
-		void addText( QString pFriendlyName, QString pRawName, QString pType, QString pDescription );
+		void addText( const QString &pFriendlyName, const QString &pRawName, const QString &pType, const QString &pDescription );
 	};
 }
