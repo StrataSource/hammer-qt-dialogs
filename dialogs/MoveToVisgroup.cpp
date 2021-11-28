@@ -17,24 +17,20 @@ CMoveToVisgroup::CMoveToVisgroup( QWidget *pParent ) :
 
 	m_pPlaceInExisting = new QRadioButton( tr( "Place object in existing visgroup:" ), this );
 	m_pVisgroupTree = new QTreeWidget( this );
-	m_pVisgroupTree->setStyle( QStyleFactory::create( "Windows" ) );
 	m_pVisgroupTree->setEnabled( false );
 	m_pVisgroupTree->setHeaderHidden( true );
 
 	// Add junk to the tree for demo
 	for (int i = 0; i < 5; i++)
 	{
-		auto pTreeItem = new QTreeWidgetItem();
+		auto pTreeItem = new QTreeWidgetItem( m_pVisgroupTree );
 		pTreeItem->setText( 0, "Visgroup " + QString::number( i ) );
 
 		for ( int i = 0; i < 5; i++ )
 		{
-			auto pSubTreeItem = new QTreeWidgetItem();
+			auto pSubTreeItem = new QTreeWidgetItem( pTreeItem );
 			pSubTreeItem->setText( 0, "Sub Visgroup " + QString::number( i ) );
-
-			pTreeItem->addChild( pSubTreeItem );
 		}
-		m_pVisgroupTree->insertTopLevelItem( i, pTreeItem );
 	}
 	m_pVisgroupTree->expandAll();
 
@@ -74,7 +70,7 @@ CMoveToVisgroup::CMoveToVisgroup( QWidget *pParent ) :
 	connect( pOkButton, &QPushButton::released, this, &CMoveToVisgroup::onOkPressed );
 	connect( pCancelButton, &QPushButton::released, this, &CMoveToVisgroup::onCancelPressed );
 
-	this->setFixedSize( this->sizeHint() );
+	this->setMinimumSize( this->sizeHint() );
 }
 
 void CMoveToVisgroup::onOkPressed()
