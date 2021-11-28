@@ -20,6 +20,8 @@ CSoundBrowser::CSoundBrowser( QWidget *pParent ) :
 	// Add components to grid
 	pDialogLayout->addWidget( pSoundsLabel, 0, 0 );
 	pDialogLayout->addWidget( m_pSoundList, 1, 0, 1, 5 );
+	pDialogLayout->setRowStretch( 1, 1 );
+	pDialogLayout->setColumnStretch( 3, 1 );
 
 	for ( int i = 0; i < 200; i++ )
 	{
@@ -101,7 +103,8 @@ CSoundBrowser::CSoundBrowser( QWidget *pParent ) :
 	//9
 	pDialogLayout->addWidget( pCancelButton, row, 0 );
 	pDialogLayout->addWidget( pOpenSourceButton, row, 1 );
-	pDialogLayout->addWidget( pRefreshSoundsButton, row, 3 );
+	pDialogLayout->addWidget( pRefreshSoundsButton, row, 2 );
+	pDialogLayout->setRowStretch( row, 0 );
 
 	// Connections
 	connect( pOkButton, &QPushButton::released, this, &CSoundBrowser::onOkPressed );
@@ -112,7 +115,7 @@ CSoundBrowser::CSoundBrowser( QWidget *pParent ) :
 	connect( pRefreshSoundsButton, &QPushButton::released, this, &CSoundBrowser::onRefreshSoundsPressed );
 
 	this->setLayout( pDialogLayout );
-	this->setFixedSize( this->sizeHint() );
+	this->setMinimumSize( this->sizeHint() );
 }
 
 void CSoundBrowser::onOkPressed()
