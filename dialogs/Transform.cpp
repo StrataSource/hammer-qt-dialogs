@@ -4,6 +4,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QDoubleValidator>
+#include <QDialogButtonBox>
 #include <QPushButton>
 
 using namespace ui;
@@ -15,8 +16,9 @@ CTransform::CTransform( QWidget *pParent ) :
 
 	auto pDialogLayout = new QGridLayout( this );
 
-	auto pOkButton = new QPushButton( tr( "Ok" ), this );
-	auto pCancelButton = new QPushButton( tr( "Cancel" ), this );
+	auto pButtonBox = new QDialogButtonBox( this );
+	auto pOkButton = pButtonBox->addButton( QDialogButtonBox::Ok );
+	auto pCancelButton = pButtonBox->addButton( QDialogButtonBox::Cancel );
 
 	auto pModeLabel = new QLabel( "Mode:", this );
 	auto pValueLabel = new QLabel( "Values:", this );
@@ -71,8 +73,7 @@ CTransform::CTransform( QWidget *pParent ) :
 	row++;
 
 	//4
-	pDialogLayout->addWidget( pOkButton, row, 0 );
-	pDialogLayout->addWidget( pCancelButton, row, 1 );
+	pDialogLayout->addWidget( pButtonBox, row, 0, 1, 2, Qt::AlignCenter );;
 
 	this->setLayout( pDialogLayout );
 
