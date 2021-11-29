@@ -59,6 +59,8 @@ set(SRC
 	dialogs/Transform.cpp
 	dialogs/SmoothingGroups.h
 	dialogs/SmoothingGroups.cpp
+	dialogs/EntityHelp.h
+	dialogs/EntityHelp.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
