@@ -63,6 +63,8 @@ set(SRC
 	dialogs/EntityHelp.cpp
 	dialogs/EditVisgroups.h
 	dialogs/EditVisgroups.cpp
+	dialogs/FaceEditSheet.h
+	dialogs/FaceEditSheet.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
