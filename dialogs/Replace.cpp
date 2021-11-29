@@ -57,15 +57,11 @@ CReplace::CReplace( QWidget *pParent ) :
 	int row = 0;
 
 	//0
-	//pDialogLayout->addWidget( pFindLabel, row, 0 );
-	//pDialogLayout->addWidget( m_pFindBox, row, 1, 1, 2 );
 	pDialogLayout->addLayout( pFindBoxLayout, row, 0, 1, 3 );
 	pDialogLayout->addWidget( pFindNextButton, row, 3 );
 	row++;
 
 	//1
-	//pDialogLayout->addWidget( pReplaceLabel, row, 0 );
-	//pDialogLayout->addWidget( m_pReplaceBox, row, 1, 1, 2 );
 	pDialogLayout->addLayout( pReplaceBoxLayout, row, 0, 1, 3 );
 	pDialogLayout->addWidget( pReplaceButton, row, 3 );
 	row++;
