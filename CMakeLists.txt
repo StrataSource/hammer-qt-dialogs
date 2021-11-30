@@ -55,6 +55,8 @@ set(SRC
 	dialogs/Sprinkle.cpp
 	dialogs/MakeHollow.h
 	dialogs/MakeHollow.cpp
+	dialogs/MapDiff.h
+	dialogs/MapDiff.cpp
 
 	# Widgets 
 	widgets/FileSelector.h

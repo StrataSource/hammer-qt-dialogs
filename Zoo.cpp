@@ -1,5 +1,6 @@
 #include "Zoo.h"
 
+#include "dialogs/MapDiff.h"
 #include "dialogs/GoTo.h"
 #include "dialogs/Options.h"
 #include "dialogs/RunMapNormal.h"
@@ -36,10 +37,11 @@ static zooDialog_t s_zooDialogs[] =
 	{"Map Information",        makeZooDialog<CMapInformation>  },
 	{"Entity Report",          makeZooDialog<CEntityReport>    },
 	{"Check map for problems", makeZooDialog<CCheckForProblems>},
-	{"Paste Special",   	     makeZooDialog<CPasteSpecial>    },
-	{"Find Entities",		       makeZooDialog<CFindEntities>    },
-	{"Entity Sprinkle",		     makeZooDialog<CSprinkle>        },
-	{"Make Hollow",			       makeZooDialog<CMakeHollow>      },
+	{"Paste Special",   	     makeZooDialog<CPasteSpecial>  },
+	{"Find Entities",		       makeZooDialog<CFindEntities>},
+	{"Entity Sprinkle",		     makeZooDialog<CSprinkle>      },
+	{"Make Hollow",			       makeZooDialog<CMakeHollow>  },
+	{"Map Diff",			       makeZooDialog<CMapDiff>     }
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
