@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="zoo_textures">
+    <file>128x128.png</file>
+	<file>64x64.png</file>
+</qresource>
+</RCC>

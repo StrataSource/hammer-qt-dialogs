@@ -6,6 +6,7 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QDoubleValidator>
+#include <QFormLayout>
 
 using namespace ui;
 
@@ -17,7 +18,7 @@ CFaceEditSheet::CFaceEditSheet( QWidget *pParent ) :
 	auto pDialogLayout = new QVBoxLayout( this );
 
 	auto pFaceEditTabWidget = new QTabWidget( this );
-	//pFaceEditTabWidget->addTab( new CFaceEditMaterialTab( this ), tr( "Material" ) );
+	pFaceEditTabWidget->addTab( new CFaceEditMaterialTab( this ), tr( "Material" ) );
 	pFaceEditTabWidget->addTab( new CFaceEditDisplacementTab( this ), tr( "Displacement" ) );
 
 	pDialogLayout->addWidget( pFaceEditTabWidget );
@@ -33,8 +34,281 @@ CFaceEditMaterialTab::CFaceEditMaterialTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
 	auto pWidgetLayout = new QGridLayout( this );
+	
+	int row = 0;
+
+#pragma region Texture Scale and Shift
+	
+	auto pTexScaleLabel = new QLabel( tr( "Texture scale:" ), this );
+	auto pTexShiftLabel = new QLabel( tr( "Texture shift:" ), this );
+
+	auto pScaleXLayout = new QFormLayout();
+	auto pScaleXLabel = new QLabel( "X:", this );
+	m_pTextureScaleX = new QDoubleSpinBox( this );
+	pScaleXLayout->addRow( pScaleXLabel, m_pTextureScaleX );
+
+	auto pScaleYLayout = new QFormLayout();
+	auto pScaleYLabel = new QLabel( "Y:", this );
+	m_pTextureScaleY = new QDoubleSpinBox( this );
+	pScaleYLayout->addRow( pScaleYLabel, m_pTextureScaleY );
+
+	auto pShiftXLayout = new QFormLayout();
+	auto pShiftXLabel = new QLabel( "X:", this );
+	m_pTextureShiftX = new QSpinBox( this );
+	pShiftXLayout->addRow( pShiftXLabel, m_pTextureShiftX );
+
+	auto pShiftYLayout = new QFormLayout();
+	auto pShiftYLabel = new QLabel( "Y:", this );
+	m_pTextureShiftY = new QSpinBox( this );
+	pShiftYLayout->addRow( pShiftYLabel, m_pTextureShiftY );
+
+	auto pXButton = new QPushButton( "X", this );
+	auto pYButton = new QPushButton( "Y", this );
+	pXButton->setFixedWidth( 20 );
+	pYButton->setFixedWidth( 20 );
+	
+#pragma endregion Texture Scale and Shift
+
+#pragma region Lightmap Scale and Rotation
+
+	auto pLightmapScaleLabel = new QLabel( tr( "Lightmap scale:" ) );
+	auto pUnitsLabel = new QLabel( tr( "(units/luxel)" ) );
+
+	m_pLightmapScale = new QSpinBox( this );
+	m_pLightmapScale->setValue( 16 );
+	m_pLightmapScale->setMinimum( 1 );
+	m_pLightmapScale->setFixedWidth( 50 );
+
+	auto pRotationLayout = new QFormLayout();
+	auto pRotationLabel = new QLabel( tr( "Rotation:" ) );
+	m_pRotation = new QDoubleSpinBox( this );
+	m_pRotation->setFixedWidth( 50 );
+	pRotationLayout->addRow( pRotationLabel, m_pRotation );
+
+#pragma endregion Lightmap Scale and Rotation
+
+#pragma region Texture Group
+
+	auto pTextureGroupLayout = new QVBoxLayout();
+
+	auto pTextureGroupSizeLayout = new QHBoxLayout();
+	auto pTextureGroupLabel = new QLabel( tr( "Texture group:" ), this );
+	auto pTexSizeLabel = new QLabel( tr( "128x128" ), this );
+	pTextureGroupSizeLayout->addWidget( pTextureGroupLabel );
+	pTextureGroupSizeLayout->addWidget( pTexSizeLabel );
+
+	m_pTextureGroupBox = new QComboBox( this );
+	m_pTextureGroupBox->addItem( "All Textures" );
+
+	pTextureGroupLayout->addLayout( pTextureGroupSizeLayout );
+	pTextureGroupLayout->addWidget( m_pTextureGroupBox );
+
+#pragma endregion
+
+#pragma region Current Texture
+	auto pCurrentTextureLabel = new QLabel( tr( "Current Texture" ), this );
+	m_pCurrentTextureBox = new QComboBox( this );
+	m_pCurrentTextureBox->setEditable( true );
+	m_pCurrentTextureBox->addItem( ":/zoo_textures/128x128.png" );
+
+	m_pTextureLabel = new QLabel( this );
+	auto pPixMap = new QPixmap( ":/zoo_textures/128x128.png" );
+	m_pTextureLabel->setPixmap( pPixMap->scaled( 80, 80 ) );
+#pragma endregion
+
+#pragma region Justify
+
+	auto pJustifyBox = new QGroupBox( tr( "Justify" ), this );
+	auto pJustifyBoxLayout = new QVBoxLayout( pJustifyBox );
+	pJustifyBoxLayout->setMargin( 2 );
+
+	auto pJustifyButtonsLayout = new QHBoxLayout();
+	auto pLButton = new QPushButton( "L", this );
+	pLButton->setFixedSize( 20, 20 );
+	auto pRButton = new QPushButton( "R", this );
+	pRButton->setFixedSize( 20, 20 );
+	auto pFitButton = new QPushButton( "Fit", this );
+	pFitButton->setFixedSize( 20, 20 );
+	auto pTButton = new QPushButton( "T", this );
+	pTButton->setFixedSize( 20, 20 );
+	auto pBButton = new QPushButton( "B", this );
+	pBButton->setFixedSize( 20, 20 );
+	auto pCButton = new QPushButton( "C", this );
+	pCButton->setFixedSize( 20, 20 );
+
+	// Layout stuff
+	pJustifyButtonsLayout->setSpacing( 0 );
+	pJustifyButtonsLayout->addWidget( pLButton );
+	pJustifyButtonsLayout->addWidget( pRButton );
+	pJustifyButtonsLayout->addWidget( pFitButton );
+	pJustifyButtonsLayout->addSpacing( 5 );
+	pJustifyButtonsLayout->addWidget( pTButton );
+	pJustifyButtonsLayout->addWidget( pBButton );
+	pJustifyButtonsLayout->addWidget( pCButton );
+
+	m_pTreatAsOne = new QCheckBox( tr( "Treat as one" ), this );
+
+	pJustifyBoxLayout->addLayout( pJustifyButtonsLayout );
+	pJustifyBoxLayout->addWidget( m_pTreatAsOne );
+
+#pragma endregion Justify
+
+#pragma region Buttons
+
+	auto pHideMaskButton = new QPushButton( tr( "Hide mask" ), this );
+	auto pBrowseButton = new QPushButton( tr( "Browse..." ), this );
+	auto pReplaceButton = new QPushButton( tr( "Replace..." ), this );
+	auto pMarkButton = new QPushButton( tr( "Mark" ), this );
+	auto pApplyButton = new QPushButton( tr( "Apply" ), this );
+	pApplyButton->setFixedHeight( 52 );
+	auto pSmoothingGroupsButton = new QPushButton( tr( "Smoothing Groups" ), this );
+
+	auto pMaskBrowRepLayout = new QVBoxLayout();
+	pMaskBrowRepLayout->addWidget( pHideMaskButton );
+	pMaskBrowRepLayout->addWidget( pBrowseButton );
+	pMaskBrowRepLayout->addWidget( pReplaceButton );
+
+#pragma endregion Buttons
+
+	auto pModeLabel = new QLabel( tr( "Mode:" ), this );
+	m_pModeBox = new QComboBox( this );
+	m_pModeBox->addItem( tr( "Lift+Select" ) );
+	m_pModeBox->addItem( tr( "Lift" ) );
+	m_pModeBox->addItem( tr( "Select" ) );
+	m_pModeBox->addItem( tr( "Apply (textures only)" ) );
+	m_pModeBox->addItem( tr( "Apply (textures + values)" ) );
+	m_pModeBox->addItem( tr( "Align To View" ) );
+
+	auto pAlignBox = new QGroupBox( tr( "Align" ), this );
+	auto pAlignLayout = new QHBoxLayout( pAlignBox );
+	m_pAlignWorld = new QCheckBox( tr( "World" ) );
+	m_pAlignFace = new QCheckBox( tr( "Face" ) );
+	pAlignLayout->addWidget( m_pAlignWorld );
+	pAlignLayout->addWidget( m_pAlignFace );
+
+	// Add components to widget layout
+	pWidgetLayout->addWidget( pTexScaleLabel, row, 0 );
+	pWidgetLayout->addWidget( pTexShiftLabel, row, 1 );
+	pWidgetLayout->addWidget( pLightmapScaleLabel, row, 3 );
+	pWidgetLayout->addWidget( pUnitsLabel, row, 3, 1, 1,  Qt::AlignRight );
+	row++;
+
+	//1
+	pWidgetLayout->addLayout( pScaleXLayout, row, 0 );
+	pWidgetLayout->addLayout( pShiftXLayout, row, 1 );
+	pWidgetLayout->addWidget( pXButton, row, 2 );
+	pWidgetLayout->addWidget( m_pLightmapScale, row, 3 );
+	row++;
+
+	//2
+	pWidgetLayout->addLayout( pScaleYLayout, row, 0 );
+	pWidgetLayout->addLayout( pShiftYLayout, row, 1 );
+	pWidgetLayout->addWidget( pYButton, row, 2 );
+	pWidgetLayout->addLayout( pRotationLayout, row, 3 );
+	row++;
+
+	//3
+	pWidgetLayout->addLayout( pTextureGroupLayout, row, 0, 1, 2, Qt::AlignTop );
+	pWidgetLayout->addWidget( pJustifyBox, row, 3 );
+	pWidgetLayout->addWidget( pCurrentTextureLabel, row, 0, Qt::AlignBottom );
+	row++;
+
+	//4
+	pWidgetLayout->addWidget( m_pCurrentTextureBox, row, 0, 1, 4, Qt::AlignTop );
+	row++;
+
+	//5
+	pWidgetLayout->addWidget( m_pTextureLabel, row, 0, 3, 1 );
+	pWidgetLayout->addLayout( pMaskBrowRepLayout, row, 1, 3, 1 );
+	pWidgetLayout->addWidget( pAlignBox, row, 2, 1, 2, Qt::AlignRight );
+	row = 7;
+
+	//8
+	pWidgetLayout->addWidget( pModeLabel, row, 3, Qt::AlignBottom);
+	row++;
+
+	//9
+	pWidgetLayout->addWidget( pMarkButton, row, 0 );
+	pWidgetLayout->addWidget( pApplyButton, row, 1, 2, 1 );
+	pWidgetLayout->addWidget( m_pModeBox, row, 3, 1, 1, Qt::AlignTop );
+	row++;
+
+	//10
+	pWidgetLayout->addWidget( pSmoothingGroupsButton, row, 3, 1, 1 );
+
+	// setup actions
+	connect( pXButton, &QPushButton::released, this, &CFaceEditMaterialTab::onXPressed);
+	connect( pYButton, &QPushButton::released, this, &CFaceEditMaterialTab::onYPressed );
+	connect( pLButton, &QPushButton::released, this, &CFaceEditMaterialTab::onLPressed );
+	connect( pRButton, &QPushButton::released, this, &CFaceEditMaterialTab::onRPressed );
+	connect( pFitButton, &QPushButton::released, this, &CFaceEditMaterialTab::onFitPressed );
+	connect( pTButton, &QPushButton::released, this, &CFaceEditMaterialTab::onTPressed );
+	connect( pBButton, &QPushButton::released, this, &CFaceEditMaterialTab::onBPressed );
+	connect( pCButton, &QPushButton::released, this, &CFaceEditMaterialTab::onCPressed );
+	connect( pHideMaskButton, &QPushButton::released, this, &CFaceEditMaterialTab::onHideMaskPressed );
+	connect( pBrowseButton, &QPushButton::released, this, &CFaceEditMaterialTab::onBrowsePressed );
+	connect( pReplaceButton, &QPushButton::released, this, &CFaceEditMaterialTab::onReplacePressed );
+	connect( pApplyButton, &QPushButton::released, this, &CFaceEditMaterialTab::onApplyPressed );
+	connect( pMarkButton, &QPushButton::released, this, &CFaceEditMaterialTab::onMarkPressed );
+	connect( pSmoothingGroupsButton, &QPushButton::released, this, &CFaceEditMaterialTab::onSmoothingGroupsPressed );
 
 	this->setLayout( pWidgetLayout );
+}
+
+void CFaceEditMaterialTab::onXPressed()
+{
+}
+
+void CFaceEditMaterialTab::onYPressed()
+{
+}
+
+void CFaceEditMaterialTab::onLPressed()
+{
+}
+
+void CFaceEditMaterialTab::onRPressed()
+{
+}
+
+void CFaceEditMaterialTab::onFitPressed()
+{
+}
+
+void CFaceEditMaterialTab::onTPressed()
+{
+}
+
+void CFaceEditMaterialTab::onBPressed()
+{
+}
+
+void CFaceEditMaterialTab::onCPressed()
+{
+}
+
+void CFaceEditMaterialTab::onHideMaskPressed()
+{
+}
+
+void CFaceEditMaterialTab::onBrowsePressed()
+{
+}
+
+void CFaceEditMaterialTab::onReplacePressed()
+{
+}
+
+void CFaceEditMaterialTab::onApplyPressed()
+{
+}
+
+void CFaceEditMaterialTab::onMarkPressed()
+{
+}
+
+void CFaceEditMaterialTab::onSmoothingGroupsPressed()
+{
 }
 
 //-----------------------------------------------------------------------------------------//
@@ -113,7 +387,7 @@ CFaceEditDisplacementTab::CFaceEditDisplacementTab( QWidget *pParent ) :
 	m_pNoPhysColBox = new QCheckBox( tr( "No Physics Collision" ), this );
 	m_pNoHullColBox = new QCheckBox( tr( "No Hull Collision" ), this );
 	m_pNoRayColBox = new QCheckBox( tr( "No Ray Collision" ), this );
-	auto pColLayout = new QVBoxLayout( this );
+	auto pColLayout = new QVBoxLayout();
 	pColLayout->addWidget( m_pNoPhysColBox );
 	pColLayout->addWidget( m_pNoHullColBox );
 	pColLayout->addWidget( m_pNoRayColBox );
@@ -123,12 +397,11 @@ CFaceEditDisplacementTab::CFaceEditDisplacementTab( QWidget *pParent ) :
 
 	// Add to attribute layout
 	auto pLabelLayout = new QVBoxLayout( this );
-	//pLabelLayout->setSpacing( 0 );
 	pLabelLayout->addWidget( pPowerLabel, 0, Qt::AlignRight  );
 	pLabelLayout->addWidget( pElevLabel, 0, Qt::AlignRight );
 	pLabelLayout->addWidget( pScaleLabel, 0, Qt::AlignRight );
 
-	auto pInputLayout = new QVBoxLayout( this );
+	auto pInputLayout = new QVBoxLayout();
 	pInputLayout->setSpacing( 12 );
 	pInputLayout->addWidget( m_pPowerSpinBox );
 	pInputLayout->addWidget( m_pElevSpinBox );
@@ -144,7 +417,7 @@ CFaceEditDisplacementTab::CFaceEditDisplacementTab( QWidget *pParent ) :
 
 #pragma region Masks & Adjacent Button
 
-	auto pBottomRow = new QHBoxLayout( this );
+	auto pBottomRow = new QHBoxLayout();
 
 	auto pMasksBox = new QGroupBox( tr( "Masks" ), this );
 	auto pMasksLayout = new QHBoxLayout( pMasksBox );

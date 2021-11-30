@@ -41,30 +41,28 @@ namespace ui
 		QCheckBox *m_pAlignFace;
 
 		QLabel *m_pTextureLabel;
+		QComboBox *m_pModeBox;
 		QComboBox *m_pTextureGroupBox;
 		QComboBox *m_pCurrentTextureBox;
 
 	private slots:
-		/*
 		void onXPressed();
 		void onYPressed();
 
-		void OnLPressed();
-		void OnRPressed();
-		void OnFitPressed();
+		void onLPressed();
+		void onRPressed();
+		void onFitPressed();
 
-		void OnTPressed();
-		void OnBPressed();
-		void OnCPressed();
+		void onTPressed();
+		void onBPressed();
+		void onCPressed();
 
 		void onHideMaskPressed();
 		void onBrowsePressed();
 		void onReplacePressed();
 		void onApplyPressed();
-		void OnMarkPressed();
-		void onModePressed();
+		void onMarkPressed();
 		void onSmoothingGroupsPressed();
-		*/
 	};
 
 	//-----------------------------------------------------------------------------------------//
@@ -88,7 +86,6 @@ namespace ui
 		QCheckBox *m_pSelectBox;
 
 	private slots:
-		// these could probably be moved to the main tab widget
 		void onApplyPressed();
 		void onSelectAdjacentPressed();
 
