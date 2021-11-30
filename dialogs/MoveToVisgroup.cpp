@@ -26,7 +26,7 @@ CMoveToVisgroup::CMoveToVisgroup( QWidget *pParent ) :
 		auto pTreeItem = new QTreeWidgetItem( m_pVisgroupTree );
 		pTreeItem->setText( 0, "Visgroup " + QString::number( i ) );
 
-		for ( int i = 0; i < 5; i++ )
+		for ( int j = 0; j < 5; j++ )
 		{
 			auto pSubTreeItem = new QTreeWidgetItem( pTreeItem );
 			pSubTreeItem->setText( 0, "Sub Visgroup " + QString::number( i ) );
@@ -75,7 +75,7 @@ CMoveToVisgroup::CMoveToVisgroup( QWidget *pParent ) :
 
 void CMoveToVisgroup::onOkPressed()
 {
-
+	// QT_TODO: Hammer Integration
 }
 
 void CMoveToVisgroup::onCancelPressed()
