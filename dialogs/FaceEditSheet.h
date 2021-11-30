@@ -9,6 +9,8 @@
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QDoubleSpinBox>
+#include <QGroupBox>
+#include <QVBoxLayout>
 
 namespace ui
 {
@@ -44,6 +46,12 @@ namespace ui
 		QComboBox *m_pModeBox;
 		QComboBox *m_pTextureGroupBox;
 		QComboBox *m_pCurrentTextureBox;
+
+	private:
+		QGridLayout *addTextureShiftAndScale();
+		QGroupBox *addAlignBox();
+		QGroupBox *addJustifyBox();
+		QVBoxLayout *addTextureGroup();
 
 	private slots:
 		void onXPressed();
@@ -84,6 +92,10 @@ namespace ui
 		// Masks
 		QCheckBox *m_pGridBox;
 		QCheckBox *m_pSelectBox;
+
+	private:
+		QGroupBox *addToolsBox();
+		QGroupBox *addAttributesBox();
 
 	private slots:
 		void onApplyPressed();
