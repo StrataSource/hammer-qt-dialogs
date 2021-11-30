@@ -59,6 +59,7 @@ CReplace::CReplace( QWidget *pParent ) :
 	//0
 	pDialogLayout->addLayout( pFindBoxLayout, row, 0, 1, 3 );
 	pDialogLayout->addWidget( pFindNextButton, row, 3 );
+	pFindNextButton->setMaximumSize( pFindNextButton->sizeHint() );
 	row++;
 
 	//1
@@ -68,8 +69,8 @@ CReplace::CReplace( QWidget *pParent ) :
 
 	//2
 	pDialogLayout->addWidget( m_pWholeWordsOnly, row, 0 );
-	pDialogLayout->addWidget( pFindInGroup, row, 1, 3, 2 );
-	pDialogLayout->addWidget( pReplaceAllButton, row, 3 );
+	pDialogLayout->addWidget( pFindInGroup, row, 1, 3, 2, Qt::AlignRight );
+	pDialogLayout->addWidget( pReplaceAllButton, row, 3);
 	row++;
 
 	//3
@@ -82,9 +83,10 @@ CReplace::CReplace( QWidget *pParent ) :
 	connect( pReplaceAllButton, &QPushButton::released, this, &CReplace::onReplaceAllPressed );
 	connect( pCancelButton, &QPushButton::released, this, &CReplace::onCancelPressed );
 
-
 	this->setLayout( pDialogLayout );
-	this->setFixedSize( this->sizeHint() );
+
+	this->setMinimumWidth( this->sizeHint().width() );
+	this->setFixedHeight( this->sizeHint().height() );
 }
 
 void CReplace::onFindNextPressed()
