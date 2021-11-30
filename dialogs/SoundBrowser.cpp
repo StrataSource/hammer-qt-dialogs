@@ -104,7 +104,6 @@ CSoundBrowser::CSoundBrowser( QWidget *pParent ) :
 	pDialogLayout->addWidget( pCancelButton, row, 0 );
 	pDialogLayout->addWidget( pOpenSourceButton, row, 1 );
 	pDialogLayout->addWidget( pRefreshSoundsButton, row, 2 );
-	pDialogLayout->setRowStretch( row, 0 );
 
 	// Connections
 	connect( pOkButton, &QPushButton::released, this, &CSoundBrowser::onOkPressed );
