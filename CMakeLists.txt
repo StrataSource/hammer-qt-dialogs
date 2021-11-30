@@ -61,6 +61,8 @@ set(SRC
 	dialogs/SmoothingGroups.cpp
 	dialogs/EntityHelp.h
 	dialogs/EntityHelp.cpp
+	dialogs/EditVisgroups.h
+	dialogs/EditVisgroups.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
