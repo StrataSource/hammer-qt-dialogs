@@ -63,6 +63,8 @@ set(SRC
 	dialogs/EntityHelp.cpp
 	dialogs/EditVisgroups.h
 	dialogs/EditVisgroups.cpp
+	dialogs/FaceEditSheet.h
+	dialogs/FaceEditSheet.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
@@ -77,7 +79,7 @@ set(SRC
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets Core Gui)
 	
-add_executable(qttest ${SRC})
+add_executable(qttest ${SRC} res/zoo_textures.qrc)
 target_link_libraries(qttest PRIVATE Qt5::Widgets Qt5::Core Qt5::Gui)
 target_include_directories(qttest PRIVATE ${QT_INCLUDE} ${QT_INCLUDE}/QtWidgets ${QT_INCLUDE}/QtGui ${QT_INCLUDE}/QtCore)
 
