@@ -65,6 +65,8 @@ set(SRC
 	dialogs/EditVisgroups.cpp
 	dialogs/FaceEditSheet.h
 	dialogs/FaceEditSheet.cpp
+	dialogs/Replace.h
+	dialogs/Replace.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
