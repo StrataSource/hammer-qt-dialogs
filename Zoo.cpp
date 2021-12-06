@@ -50,7 +50,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Entity Help",				makeZooDialog<CEntityHelp>		},
 	{"Edit Visgroups",			makeZooDialog<CEditVisgroups>	},
 	{"Face Edit Sheet",			makeZooDialog<CFaceEditSheet>	},
-	{"Replace",					makeZooDialog<CReplace>			}
+	{"Replace",					makeZooDialog<CReplace>			},
+	{"Map Diff",					makeZooDialog<CReplace>		}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 

@@ -67,6 +67,8 @@ set(SRC
 	dialogs/FaceEditSheet.cpp
 	dialogs/Replace.h
 	dialogs/Replace.cpp
+	dialogs/MapDiff.h
+	dialogs/MapDiff.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
