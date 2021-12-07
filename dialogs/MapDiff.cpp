@@ -22,8 +22,8 @@ CMapDiff::CMapDiff(QWidget* pParent):
 	auto pBrowseButton = new QPushButton(this);
 	pBrowseButton->setText(tr("Browse"));
 
-	m_pDifSimilarVisgroup = new QCheckBox(tr("Place Similarities in \"Similar\" Visgroup"), this);
-	m_pDifSimilarVisgroup->setChecked(true);
+	m_pDiffSimilarVisgroup = new QCheckBox(tr("Place Similarities in \"Similar\" Visgroup"), this);
+	m_pDiffSimilarVisgroup->setChecked(true);
 
 	auto pButtonBox = new QDialogButtonBox(Qt::Orientation::Horizontal, this);
 	auto pOKButton = pButtonBox->addButton(QDialogButtonBox::Ok);
@@ -33,7 +33,7 @@ CMapDiff::CMapDiff(QWidget* pParent):
 	pDialogLayout->addWidget(m_pFindName, 0, 0, Qt::AlignRight);
 	pDialogLayout->addWidget(pBrowseButton, 0, 1, Qt::AlignRight);
 	pDialogLayout->addWidget(pOptionLabel, 1, 0, Qt::AlignLeft);
-	pDialogLayout->addWidget(m_pDifSimilarVisgroup, 2, 0, Qt::AlignLeft);
+	pDialogLayout->addWidget(m_pDiffSimilarVisgroup, 2, 0, Qt::AlignLeft);
 	pDialogLayout->addWidget(pButtonBox, 3, 0, Qt::AlignLeft);
 
 	connect(pOKButton, &QPushButton::released, this, &CMapDiff::onOKPressed);

@@ -14,7 +14,7 @@ namespace ui
         CMapDiff( QWidget *pParent );
 
         QLineEdit* m_pFindName;
-        QCheckBox* m_pDifSimilarVisgroup;
+        QCheckBox* m_pDiffSimilarVisgroup;
 
     private slots:
         void onOKPressed();
