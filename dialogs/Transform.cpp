@@ -1,10 +1,10 @@
 #include "dialogs/Transform.h"
 
+#include <QDialogButtonBox>
+#include <QDoubleValidator>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QDoubleValidator>
-#include <QDialogButtonBox>
 #include <QPushButton>
 
 using namespace ui;
@@ -52,28 +52,29 @@ CTransform::CTransform( QWidget *pParent ) :
 	// Add widgets to the grid layout
 	int row = 0;
 
-	//0
+	// 0
 	pDialogLayout->addWidget( pModeLabel, row, 0 );
 	pDialogLayout->addWidget( pValueLabel, row, 1 );
 	row++;
 
-	//1
+	// 1
 	pDialogLayout->addWidget( m_pRotate, row, 0 );
 	pDialogLayout->addLayout( pXLayout, row, 1 );
 	row++;
 
-	//2
+	// 2
 	pDialogLayout->addWidget( m_pScale, row, 0 );
 	pDialogLayout->addLayout( pYLayout, row, 1 );
 	row++;
 
-	//3
+	// 3
 	pDialogLayout->addWidget( m_pMove, row, 0 );
 	pDialogLayout->addLayout( pZLayout, row, 1 );
 	row++;
 
-	//4
-	pDialogLayout->addWidget( pButtonBox, row, 0, 1, 2, Qt::AlignCenter );;
+	// 4
+	pDialogLayout->addWidget( pButtonBox, row, 0, 1, 2, Qt::AlignCenter );
+	;
 
 	this->setLayout( pDialogLayout );
 

@@ -14,4 +14,4 @@ namespace ui
 		void onSmoothPressed( int value );
 		void onHardPressed( int value );
 	};
-}
+} // namespace ui

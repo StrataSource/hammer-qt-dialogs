@@ -1,48 +1,49 @@
 
 #include <QDialog>
-#include <QPushButton>
-#include <QLineEdit>
-#include <QLabel>
 #include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 
 namespace ui
 {
-	
-//-----------------------------------------------------------------//
-// The Go to coord dialog, usually used for debugging compile issues
-//-----------------------------------------------------------------//
-class CGoToCoordDialog : public QDialog
-{
-	Q_OBJECT;
-public:
-	QPushButton* m_pGo;
-	QPushButton* m_pCancel;
-	QLineEdit* m_pXYZ;
-	QLineEdit* m_pAngles;
+	//-----------------------------------------------------------------//
+	// The Go to coord dialog, usually used for debugging compile issues
+	//-----------------------------------------------------------------//
+	class CGoToCoordDialog : public QDialog
+	{
+		Q_OBJECT;
 
-	CGoToCoordDialog(QWidget* pParent);
-	
-private slots:
-	void onGoPressed();
-	void onCancelPressed();
-};
+	public:
+		QPushButton *m_pGo;
+		QPushButton *m_pCancel;
+		QLineEdit *m_pXYZ;
+		QLineEdit *m_pAngles;
 
-//-----------------------------------------------------------------//
-// The Go to brush dialog, usually used for debugging 
-//-----------------------------------------------------------------//
-class CGoToBrushDialog : public QDialog
-{
-	Q_OBJECT;
-public:
-	QLineEdit* m_pBrush;
-	QPushButton* m_pGo;
-	QPushButton* m_pCancel;
+		CGoToCoordDialog( QWidget *pParent );
 
-	CGoToBrushDialog(QWidget* pParent);
-	
-private slots:
-	void onGoPressed();
-	void onCancelPressed();
-};
-	
-}
+	private slots:
+		void onGoPressed();
+		void onCancelPressed();
+	};
+
+	//-----------------------------------------------------------------//
+	// The Go to brush dialog, usually used for debugging
+	//-----------------------------------------------------------------//
+	class CGoToBrushDialog : public QDialog
+	{
+		Q_OBJECT;
+
+	public:
+		QLineEdit *m_pBrush;
+		QPushButton *m_pGo;
+		QPushButton *m_pCancel;
+
+		CGoToBrushDialog( QWidget *pParent );
+
+	private slots:
+		void onGoPressed();
+		void onCancelPressed();
+	};
+
+} // namespace ui

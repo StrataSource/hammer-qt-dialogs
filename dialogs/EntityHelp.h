@@ -9,7 +9,6 @@ namespace ui
 	{
 		Q_OBJECT
 	public:
-
 		// QT_TODO: Add the entity to the setEntity and this constructor
 		// then you'll have to add all the keys, inputs and outputs in that method.
 		CEntityHelp( QWidget *pParent );
@@ -23,4 +22,4 @@ namespace ui
 	private:
 		void addText( const QString &pFriendlyName, const QString &pRawName, const QString &pType, const QString &pDescription );
 	};
-}
+} // namespace ui

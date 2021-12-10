@@ -1,11 +1,11 @@
 #include "dialogs/Replace.h"
 
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QGroupBox>
 #include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 using namespace ui;
 
@@ -29,7 +29,6 @@ CReplace::CReplace( QWidget *pParent ) :
 	pReplaceBoxLayout->addWidget( pReplaceLabel );
 	pReplaceBoxLayout->addWidget( m_pReplaceBox );
 
-
 	// Push Buttons
 	auto pFindNextButton = new QPushButton( tr( "Find Next" ), this );
 	auto pReplaceButton = new QPushButton( tr( "Replace" ), this );
@@ -52,28 +51,27 @@ CReplace::CReplace( QWidget *pParent ) :
 	pFindInLayout->addWidget( m_pEntireFileButton );
 	pFindInLayout->addWidget( m_pVisibleObjectsOnly );
 
-
 	// Add all the widgets to the layout
 	int row = 0;
 
-	//0
+	// 0
 	pDialogLayout->addLayout( pFindBoxLayout, row, 0, 1, 3 );
 	pDialogLayout->addWidget( pFindNextButton, row, 3 );
 	pFindNextButton->setMaximumSize( pFindNextButton->sizeHint() );
 	row++;
 
-	//1
+	// 1
 	pDialogLayout->addLayout( pReplaceBoxLayout, row, 0, 1, 3 );
 	pDialogLayout->addWidget( pReplaceButton, row, 3 );
 	row++;
 
-	//2
+	// 2
 	pDialogLayout->addWidget( m_pWholeWordsOnly, row, 0 );
 	pDialogLayout->addWidget( pFindInGroup, row, 1, 3, 2, Qt::AlignRight );
-	pDialogLayout->addWidget( pReplaceAllButton, row, 3);
+	pDialogLayout->addWidget( pReplaceAllButton, row, 3 );
 	row++;
 
-	//3
+	// 3
 	pDialogLayout->addWidget( m_pCaseSensitive, row, 0 );
 	pDialogLayout->addWidget( pCancelButton, row, 3 );
 

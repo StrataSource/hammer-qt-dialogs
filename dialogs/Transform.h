@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QDialog>
-#include <QRadioButton>
 #include <QLineEdit>
+#include <QRadioButton>
 
 namespace ui
 {

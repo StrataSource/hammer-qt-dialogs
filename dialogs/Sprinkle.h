@@ -1,11 +1,11 @@
 #pragma once
 
-#include <QDialog>
-#include <QComboBox>
-#include <QSlider>
-#include <QPlainTextEdit>
 #include <QCheckBox>
+#include <QComboBox>
+#include <QDialog>
 #include <QLabel>
+#include <QPlainTextEdit>
+#include <QSlider>
 
 namespace ui
 {
@@ -34,7 +34,7 @@ namespace ui
 	private slots:
 		void onUseGridPressed();
 
-		void changeSliderLabel(int value);
+		void changeSliderLabel( int value );
 	};
 
 } // namespace ui

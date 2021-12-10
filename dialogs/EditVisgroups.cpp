@@ -1,12 +1,12 @@
 #include "dialogs/EditVisgroups.h"
 
-#include <QPushButton>
-#include <QLabel>
-#include <QHBoxLayout>
+#include <QColorDialog>
 #include <QGridLayout>
 #include <QGroupBox>
+#include <QHBoxLayout>
 #include <QHeaderView>
-#include <QColorDialog>
+#include <QLabel>
+#include <QPushButton>
 
 using namespace ui;
 
@@ -23,7 +23,7 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 
 	// We do this to allow the tree to be scrolled horizontally.. I wish it was easier
 	m_pVisgroupTree->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
-	m_pVisgroupTree->header()->setStretchLastSection( false ); 
+	m_pVisgroupTree->header()->setStretchLastSection( false );
 
 	// Add junk to the tree for demo
 	for ( int i = 0; i < 5; i++ )
@@ -51,7 +51,7 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 
 	auto pNameLayout = new QHBoxLayout( this );
 	auto pNameLabel = new QLabel( tr( "Name:" ), this );
-	m_pVisgroupNameBox = new QLineEdit( this );	
+	m_pVisgroupNameBox = new QLineEdit( this );
 	pNameLayout->addWidget( pNameLabel );
 	pNameLayout->addWidget( m_pVisgroupNameBox, 0, Qt::AlignLeft );
 
@@ -71,12 +71,12 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	pGroupLayout->addLayout( pNameLayout, row, 0, 1, 2 );
 	row++;
 
-	//1
+	// 1
 	pGroupLayout->addWidget( pColorButton, row, 0 );
 	pGroupLayout->addWidget( m_pColorFrame, row, 1 );
 	row++;
 
-	//2
+	// 2
 	pGroupLayout->addWidget( pRemoveButton, row, 0 );
 
 	// Buttons
@@ -100,7 +100,7 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	pDialogLayout->addWidget( m_pVisgroupTree, row, 0, 5, 2 );
 	pDialogLayout->addWidget( pSelGroupBox, row, 2, 5, 2 );
 
-	//6
+	// 6
 	row = 6;
 	pDialogLayout->addWidget( pNewGroupButton, row, 0, 1, 1 );
 	pDialogLayout->addWidget( pPurgeEmptyButton, row, 1 );
@@ -119,7 +119,7 @@ CEditVisgroups::CEditVisgroups( QWidget *pParent ) :
 	this->setMinimumSize( this->sizeHint() );
 }
 
-void CEditVisgroups::setColorFrameColor( const QColor& pNewColor )
+void CEditVisgroups::setColorFrameColor( const QColor &pNewColor )
 {
 	if ( !m_pColorFrame )
 		return;

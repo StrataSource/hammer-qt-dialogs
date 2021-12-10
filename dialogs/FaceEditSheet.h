@@ -1,16 +1,16 @@
 #pragma once
 
-#include <QDialog>
-#include <QWidget>
-#include <QComboBox>
 #include <QCheckBox>
-#include <QLabel>
-#include <QPixmap>
-#include <QLineEdit>
-#include <QSpinBox>
+#include <QComboBox>
+#include <QDialog>
 #include <QDoubleSpinBox>
 #include <QGroupBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPixmap>
+#include <QSpinBox>
 #include <QVBoxLayout>
+#include <QWidget>
 
 namespace ui
 {

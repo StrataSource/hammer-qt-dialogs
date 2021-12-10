@@ -1,10 +1,10 @@
 #pragma once
 
-#include <QDialog>
-#include <QTreeWidget>
-#include <QLineEdit>
-#include <QFrame>
 #include <QColor>
+#include <QDialog>
+#include <QFrame>
+#include <QLineEdit>
+#include <QTreeWidget>
 
 namespace ui
 {
@@ -30,4 +30,4 @@ namespace ui
 		void onColorPressed();
 		void onRemovePressed();
 	};
-}
+} // namespace ui

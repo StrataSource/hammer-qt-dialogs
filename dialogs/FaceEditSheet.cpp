@@ -1,10 +1,10 @@
 #include "dialogs/FaceEditSheet.h"
 
-#include <QHBoxLayout>
-#include <QGridLayout> 
-#include <QPushButton>
 #include <QDoubleValidator>
 #include <QFormLayout>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 
 using namespace ui;
 
@@ -32,7 +32,7 @@ CFaceEditMaterialTab::CFaceEditMaterialTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
 	auto pWidgetLayout = new QGridLayout( this );
-	
+
 	int row = 0;
 
 	auto pLightmapScaleLabel = new QLabel( tr( "Lightmap scale:" ) );
@@ -82,48 +82,47 @@ CFaceEditMaterialTab::CFaceEditMaterialTab( QWidget *pParent ) :
 	m_pModeBox->addItem( tr( "Apply (textures + values)" ) );
 	m_pModeBox->addItem( tr( "Align To View" ) );
 
-
 	// Add components to widget layout
 	pWidgetLayout->addLayout( addTextureShiftAndScale(), row, 0, 3, 2 );
 	pWidgetLayout->addWidget( pLightmapScaleLabel, row, 3 );
-	pWidgetLayout->addWidget( pUnitsLabel, row, 3, 1, 1,  Qt::AlignRight );
+	pWidgetLayout->addWidget( pUnitsLabel, row, 3, 1, 1, Qt::AlignRight );
 	row++;
 
-	//1
+	// 1
 	pWidgetLayout->addWidget( m_pLightmapScale, row, 3 );
 	row++;
 
-	//2
+	// 2
 	pWidgetLayout->addLayout( pRotationLayout, row, 3 );
 	row++;
 
-	//3
+	// 3
 	pWidgetLayout->addLayout( addTextureGroup(), row, 0, 1, 2, Qt::AlignTop );
 	pWidgetLayout->addWidget( addJustifyBox(), row, 3 );
 	pWidgetLayout->addWidget( pCurrentTextureLabel, row, 0, Qt::AlignBottom );
 	row++;
 
-	//4
+	// 4
 	pWidgetLayout->addWidget( m_pCurrentTextureBox, row, 0, 1, 4, Qt::AlignTop );
 	row++;
 
-	//5
+	// 5
 	pWidgetLayout->addWidget( m_pTextureLabel, row, 0, 3, 1 );
 	pWidgetLayout->addLayout( pMaskBrowRepLayout, row, 1, 3, 1 );
 	pWidgetLayout->addWidget( addAlignBox(), row, 2, 1, 2, Qt::AlignRight );
 	row = 7;
 
-	//8
-	pWidgetLayout->addWidget( pModeLabel, row, 3, Qt::AlignBottom);
+	// 8
+	pWidgetLayout->addWidget( pModeLabel, row, 3, Qt::AlignBottom );
 	row++;
 
-	//9
+	// 9
 	pWidgetLayout->addWidget( pMarkButton, row, 0 );
 	pWidgetLayout->addWidget( pApplyButton, row, 1, 2, 1 );
 	pWidgetLayout->addWidget( m_pModeBox, row, 3, 1, 1, Qt::AlignTop );
 	row++;
 
-	//10
+	// 10
 	pWidgetLayout->addWidget( pSmoothingGroupsButton, row, 3, 1, 1 );
 
 	// setup actions
@@ -174,13 +173,13 @@ QGridLayout *CFaceEditMaterialTab::addTextureShiftAndScale()
 	pMethodLayout->addWidget( pTexShiftLabel, row, 1 );
 	row++;
 
-	//1
+	// 1
 	pMethodLayout->addLayout( pScaleXLayout, row, 0 );
 	pMethodLayout->addLayout( pShiftXLayout, row, 1 );
 	pMethodLayout->addWidget( pXButton, row, 2 );
 	row++;
 
-	//2
+	// 2
 	pMethodLayout->addLayout( pScaleYLayout, row, 0 );
 	pMethodLayout->addLayout( pShiftYLayout, row, 1 );
 	pMethodLayout->addWidget( pYButton, row, 2 );

@@ -1,9 +1,9 @@
 #include "dialogs/SmoothingGroups.h"
 
-#include <QGroupBox>
 #include <QGridLayout>
-#include <QPushButton>
+#include <QGroupBox>
 #include <QLabel>
+#include <QPushButton>
 
 using namespace ui;
 

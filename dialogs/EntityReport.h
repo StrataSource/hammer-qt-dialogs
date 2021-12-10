@@ -1,10 +1,10 @@
 #pragma once
 
-#include <QDialog>
 #include <QButtonGroup>
 #include <QCheckBox>
-#include <QLineEdit>
 #include <QComboBox>
+#include <QDialog>
+#include <QLineEdit>
 
 namespace ui
 {

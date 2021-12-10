@@ -1,9 +1,9 @@
 #pragma once
 
-#include <QDialog>
 #include <QCheckBox>
-#include <QRadioButton>
+#include <QDialog>
 #include <QLineEdit>
+#include <QRadioButton>
 
 namespace ui
 {
@@ -29,4 +29,4 @@ namespace ui
 		void onReplaceAllPressed();
 		void onCancelPressed();
 	};
-}
+} // namespace ui
