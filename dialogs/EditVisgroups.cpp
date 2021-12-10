@@ -2,7 +2,7 @@
 
 #include <QPushButton>
 #include <QLabel>
-#include <QHboxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QHeaderView>
