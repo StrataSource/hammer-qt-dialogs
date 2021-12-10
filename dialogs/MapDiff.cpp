@@ -43,18 +43,22 @@ CMapDiff::CMapDiff(QWidget* pParent):
 
 	this->setLayout(pDialogLayout);
 	this->setFixedSize(this->sizeHint());
-
-};
+}
 
 void CMapDiff::onOKPressed()
 {
+	// QT_TODO: Integrate
 	this->close();
-};
+}
+
 void CMapDiff::onBrowsePressed()
 {
+	// QT_TODO: Integrate
 	this->close();
-};
+}
+
 void CMapDiff::onClosePressed()
 {
+	// QT_TODO: Integrate
 	this->close();
-};
+}
