@@ -69,6 +69,8 @@ set(SRC
 	dialogs/Replace.cpp
 	dialogs/MapDiff.h
 	dialogs/MapDiff.cpp
+	dialogs/MoveToVisgroup.h
+	dialogs/MoveToVisgroup.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
