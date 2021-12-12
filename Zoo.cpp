@@ -39,7 +39,6 @@ static zooDialog_t s_zooDialogs[] =
 {
 	{"Go To Brush",				makeZooDialog<CGoToBrushDialog> },
 	{"Go To Coord",				makeZooDialog<CGoToCoordDialog> },
-	{"Preferences",				makeZooDialog<CPrefManager>     },
 	{"Run Map Normal",			makeZooDialog<CRunMapNormal>    },
 	{"Map Information",			makeZooDialog<CMapInformation>  },
 	{"Entity Report",			makeZooDialog<CEntityReport>    },
@@ -56,7 +55,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Replace",					makeZooDialog<CReplace>			},
 	{"Map Diff",				makeZooDialog<CMapDiff>			},
 	{"Move to visgroup",		makeZooDialog<CMoveToVisgroup>	},
-	{"Sound Browser",			makeZooDialog<CSoundBrowser>	}
+	{"Sound Browser",			makeZooDialog<CSoundBrowser>	},
+	{"Options",					makeZooDialog<COptions>			}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
