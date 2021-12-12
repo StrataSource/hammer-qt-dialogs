@@ -25,6 +25,8 @@ CFileSelector::CFileSelector(QWidget* pParent, Options opts) :
 	pGridLayout->addWidget(m_pEntryLabel, 0, 0);
 	pGridLayout->addWidget(m_pLineEdit, 1, 0);
 	pGridLayout->addWidget(m_pBrowseButton, 1, 1);
+
+	pGridLayout->setContentsMargins( 0, 0, 0, 0 );
 	
 	this->setLayout(pGridLayout);
 	
