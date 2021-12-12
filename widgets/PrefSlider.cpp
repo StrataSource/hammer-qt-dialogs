@@ -65,6 +65,8 @@ CPrefSlider::CPrefSlider(QWidget* pParent, const QString& label, const QString& 
 	pLayout->addWidget(m_pSlider);
 	pLayout->addWidget(m_pValueLabel);
 	
+	pLayout->setContentsMargins( 0, 0, 0, 0 );
+
 	connect(m_pSlider, &QSlider::valueChanged, this, &CPrefSlider::onSliderValueChanged);
 }
 
