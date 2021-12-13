@@ -1,5 +1,3 @@
-#pragma once
-
 #include "dialogs/Options.h"
 
 #include <QLabel>
@@ -199,8 +197,8 @@ QGroupBox *COptionsGeneralTab::addDiscordGroup()
 	auto pDiscordLayout = new QGridLayout( pDiscordGroup );
 
 	m_pEnableDiscord = new QCheckBox( tr( "Enable Discord" ), this );
-	auto pLine1Label = new QLabel( tr( "Line 1" ) );
-	auto pLine2Label = new QLabel( tr( "Line 2" ) );
+	auto pLine1Label = new QLabel( tr( "Line 1" ), this );
+	auto pLine2Label = new QLabel( tr( "Line 2" ), this );
 	m_pDiscordLine1 = new QLineEdit( this );
 	m_pDiscordLine2 = new QLineEdit( this );
 	
