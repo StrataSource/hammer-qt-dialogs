@@ -13,15 +13,19 @@ CMapDiff::CMapDiff( QWidget *pParent ) :
 	this->setWindowTitle( tr( "Map Diff" ) );
 
 	auto pDialogLayout = new QGridLayout( this );
-	pDialogLayout->setAlignment( Qt::AlignLeft );
 
+	auto pFindLayout = new QHBoxLayout( this );
 	auto pFindLabel = new QLabel( tr( "Map to Diff Against " ), this );
-	auto pOptionLabel = new QLabel( tr( "Diff Options" ), this );
 	m_pFindName = new QLineEdit( this );
 
 	auto pBrowseButton = new QPushButton( this );
 	pBrowseButton->setText( tr( "Browse" ) );
 
+	pFindLayout->addWidget( pFindLabel );
+	pFindLayout->addWidget( m_pFindName );
+	pFindLayout->addWidget( pBrowseButton );
+
+	auto pOptionLabel = new QLabel( tr( "Diff Options" ), this );
 	m_pDiffSimilarVisgroup = new QCheckBox( tr( "Place Similarities in \"Similar\" Visgroup" ), this );
 	m_pDiffSimilarVisgroup->setChecked( true );
 
@@ -29,11 +33,9 @@ CMapDiff::CMapDiff( QWidget *pParent ) :
 	auto pOKButton = pButtonBox->addButton( QDialogButtonBox::Ok );
 	auto pCloseButton = pButtonBox->addButton( QDialogButtonBox::Close );
 
-	pDialogLayout->addWidget( pFindLabel, 0, 0, Qt::AlignLeft );
-	pDialogLayout->addWidget( m_pFindName, 0, 0, Qt::AlignRight );
-	pDialogLayout->addWidget( pBrowseButton, 0, 1, Qt::AlignRight );
-	pDialogLayout->addWidget( pOptionLabel, 1, 0, Qt::AlignLeft );
-	pDialogLayout->addWidget( m_pDiffSimilarVisgroup, 2, 0, Qt::AlignLeft );
+	pDialogLayout->addLayout( pFindLayout, 0, 0, 1, 3 );
+	pDialogLayout->addWidget( pOptionLabel, 1, 0 );
+	pDialogLayout->addWidget( m_pDiffSimilarVisgroup, 2, 0 );
 	pDialogLayout->addWidget( pButtonBox, 3, 0, Qt::AlignLeft );
 
 	connect( pOKButton, &QPushButton::released, this, &CMapDiff::onOKPressed );
