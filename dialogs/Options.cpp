@@ -112,7 +112,7 @@ COptionsGeneralTab::COptionsGeneralTab( QWidget *pParent ) :
 
 	pUndoLevelMaxCamLayout->addWidget( pUndoLevelsLabel );
 	pUndoLevelMaxCamLayout->addWidget( m_pUndoLevels );
-	pUndoLevelMaxCamLayout->insertStretch( -1, 1 );
+	pUndoLevelMaxCamLayout->addSpacing( 5 );
 	pUndoLevelMaxCamLayout->addWidget( pMaxCamLabel );
 	pUndoLevelMaxCamLayout->addWidget( m_pMaxCameras );
 	pUndoLevelMaxCamLayout->insertStretch( -1, 1 );
