@@ -126,8 +126,8 @@ COptionsGeneralTab::COptionsGeneralTab( QWidget *pParent ) :
 	pWidgetLayout->addWidget( m_pStretchToFitOrigBounding );
 	pWidgetLayout->addWidget( m_pEnableMatProxies );
 	pWidgetLayout->addWidget( m_pEnablePerforce );
-	pWidgetLayout->addWidget( m_pFavoriteMaterial );
 	pWidgetLayout->addWidget( m_pUseNodrawForClippedFaces );
+	pWidgetLayout->addWidget( m_pFavoriteMaterial );
 	pWidgetLayout->addWidget( m_pAutoDeleteEmptyVisgroups );
 	pWidgetLayout->addWidget( m_pShowCarveWarning );
 
