@@ -8,6 +8,9 @@
 #include <QTabWidget>
 #include <QDialogButtonBox>
 #include <QColorDialog>
+#include <QPainter>
+
+#include <QDebug>
 
 using namespace ui;
 
@@ -785,7 +788,7 @@ QGroupBox *COptionsColorsTab::addColorsGroup()
 	pModelColLayout->addWidget( m_pWireframeNonSolidColor );
 
 	pColLayout->addWidget( pToolGroup, 0, 3, 6, 1 );
-	pColLayout->addWidget( pModelColBox, 5, 0, 1, 2 );
+	pColLayout->addWidget( pModelColBox, 5, 0, 1, 2, Qt::AlignLeft );
 
 	return pColGroup;
 }
@@ -799,8 +802,8 @@ CColorBox::CColorBox( QWidget *pParent, const QString &label ) :
 
 	m_pLabel = new QLabel( label, this );
 
-	m_pButton = new QPushButton( this );
-	m_pButton->setFixedWidth( 50 );
+	m_pButton = new CColorPushButton( this, Qt::white );
+	m_pButton->setFixedWidth( 25 );
 
 	// FOR DEBUG
 	setColor( QColor( qrand() % 255, qrand() % 255, qrand() % 255 ) );
@@ -808,21 +811,54 @@ CColorBox::CColorBox( QWidget *pParent, const QString &label ) :
 	pLayout->addWidget( m_pLabel, 0, Qt::AlignLeft );
 	pLayout->addWidget( m_pButton, 0, Qt::AlignLeft );
 
+	pLayout->setAlignment( Qt::AlignRight );
+
 	connect( m_pButton, &QPushButton::released, this, &CColorBox::onButtonPressed );
 }
 
 void CColorBox::setColor( const QColor &pNewColor )
 {
 	m_Color = pNewColor;
-
-	char buf[256];
-	snprintf( buf, sizeof( buf ), "background-color: rgb(%i, %i, %i)", pNewColor.red(), pNewColor.green(), pNewColor.blue() );
-
-	m_pButton->setStyleSheet( buf );
+	m_pButton->setColor( m_Color );
 }
 
 void CColorBox::onButtonPressed()
 {
 	m_Color = QColorDialog::getColor( m_Color, this );
 	setColor( m_Color );
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CColorPushButton::CColorPushButton( QWidget *pParent, const QColor &color ) :
+	QPushButton( pParent )
+{
+	m_Color = color;
+}
+
+void CColorPushButton::setColor( const QColor &pNewColor )
+{
+	m_Color = pNewColor;
+}
+
+void CColorPushButton::paintEvent( QPaintEvent *pe )
+{
+	QPushButton::paintEvent( pe );
+
+	QPainter p( this );
+	// We set it to 14 since the pen adds 1 pixels
+	QRect rect( 7, 4, 14, 14 );
+	QPoint center( this->rect().center().x() - 1, this->rect().center().y() - 1 );
+
+	rect.moveCenter( center );
+
+	// Give it a black border
+	p.setPen( Qt::black );
+	// If we're disabled, colour our box white instead
+	// if we're not, then paint our normal colour
+	if ( !isEnabled() )
+		p.setBrush( Qt::white );
+	else
+		p.setBrush( m_Color );
+	p.drawRect( rect );
 }

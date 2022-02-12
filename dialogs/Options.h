@@ -297,10 +297,27 @@ namespace ui
 
 	private:
 		QLabel *m_pLabel;
-		QPushButton *m_pButton;
+		class CColorPushButton *m_pButton;
 		QColor m_Color;
 
 	private slots:
 		void onButtonPressed();
 	};
+
+	//-----------------------------------------------------------------------------------------//
+
+	class CColorPushButton : public QPushButton
+	{
+		Q_OBJECT
+	public:
+		CColorPushButton( QWidget *pParent, const QColor &color = Qt::white );
+		void setColor( const QColor &pNewColor );
+
+	protected:
+		void paintEvent( QPaintEvent *pe ) override;
+
+	private:
+		QColor m_Color;
+	};
+
 } // namespace ui
