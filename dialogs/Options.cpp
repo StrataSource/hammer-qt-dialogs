@@ -17,7 +17,7 @@ COptions::COptions( QWidget *pParent ) :
 {
 	this->setWindowTitle( tr( "Options" ) );
 
-	auto pDialogLayout = new QVBoxLayout( this );
+	auto pDialogLayout = new QVBoxLayout();
 	
 	auto pOptionsTabWidget = new QTabWidget( this );
 	m_pGeneralTab = new COptionsGeneralTab( this );
@@ -83,9 +83,9 @@ void ui::COptions::onHelpPressed()
 COptionsGeneralTab::COptionsGeneralTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QVBoxLayout( this );
+	auto pWidgetLayout = new QVBoxLayout();
 
-	auto pUndoLevelMaxCamLayout = new QHBoxLayout( this );
+	auto pUndoLevelMaxCamLayout = new QHBoxLayout();
 	auto pUndoLevelsLabel = new QLabel( tr( "Undo Levels:" ), this );
 	auto pMaxCamLabel = new QLabel( tr( "Max Cameras:" ), this );
 	m_pUndoLevels = new QSpinBox( this );
@@ -152,7 +152,7 @@ QGroupBox *COptionsGeneralTab::addAutosaveGroup()
 
 	m_pEnableAutosave = new QCheckBox( tr( "Enable Autosave" ), this );
 
-	auto pAutosaveTimeLayout = new QHBoxLayout( this );
+	auto pAutosaveTimeLayout = new QHBoxLayout();
 	auto pAutosaveTimeLabel = new QLabel( tr( "Time Between Saves (in minutes)" ), this );
 	m_pAutosaveTime = new QLineEdit( this );
 	m_pAutosaveTime->setValidator( new QDoubleValidator( m_pAutosaveTime ) );
@@ -161,7 +161,7 @@ QGroupBox *COptionsGeneralTab::addAutosaveGroup()
 	pAutosaveTimeLayout->addWidget( m_pAutosaveTime, 0, Qt::AlignLeft );
 	pAutosaveTimeLayout->insertStretch( -1, 1 );
 
-	auto pAutosaveSizeLayout = new QHBoxLayout( this );
+	auto pAutosaveSizeLayout = new QHBoxLayout();
 	auto pAutosaveSizeLabel = new QLabel( tr( "Amount of hard drive space used for autosaves (in megabytes)" ), this );
 	m_pAutosaveSize = new QLineEdit( this );
 	m_pAutosaveSize->setValidator( new QDoubleValidator( m_pAutosaveSize ) );
@@ -170,7 +170,7 @@ QGroupBox *COptionsGeneralTab::addAutosaveGroup()
 	pAutosaveSizeLayout->addWidget( m_pAutosaveSize );
 	pAutosaveSizeLayout->insertStretch( -1, 1 );
 
-	auto pAutosaveIterationsLayout = new QHBoxLayout( this );
+	auto pAutosaveIterationsLayout = new QHBoxLayout();
 	auto pAutosaveIterationsLabel = new QLabel( tr( "Number of map iterations to save" ), this );
 	m_pAutosaveIterations = new QLineEdit( this );
 	m_pAutosaveIterations->setValidator( new QDoubleValidator( m_pAutosaveIterations ) );
@@ -202,10 +202,10 @@ QGroupBox *COptionsGeneralTab::addDiscordGroup()
 	m_pDiscordLine1 = new QLineEdit( this );
 	m_pDiscordLine2 = new QLineEdit( this );
 	
-	auto pLine1Layout = new QHBoxLayout( this );
+	auto pLine1Layout = new QHBoxLayout();
 	pLine1Layout->addWidget( pLine1Label );
 	pLine1Layout->addWidget( m_pDiscordLine1 );
-	auto pLine2Layout = new QHBoxLayout( this );
+	auto pLine2Layout = new QHBoxLayout();
 	pLine2Layout->addWidget( pLine2Label );
 	pLine2Layout->addWidget( m_pDiscordLine2 );
 
@@ -233,7 +233,7 @@ QGroupBox *COptionsGeneralTab::addDiscordGroup()
 COptions2DViewsTab::COptions2DViewsTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QVBoxLayout( this );
+	auto pWidgetLayout = new QVBoxLayout();
 
 	pWidgetLayout->addWidget( addOptionsGroup(), 0, Qt::AlignTop );
 	pWidgetLayout->addWidget( addGridGroup(), 0, Qt::AlignTop );
@@ -285,7 +285,7 @@ QGroupBox *COptions2DViewsTab::addGridGroup()
 	auto pGridLayout = new QGridLayout( pGridGroup );
 
 	// Grid Size
-	auto pSizeLayout = new QHBoxLayout( this );
+	auto pSizeLayout = new QHBoxLayout();
 	auto pSizeLabel = new QLabel( tr( "Size:" ) );
 	m_pGridSizeBox = new QComboBox( this );
 	m_pGridSizeBox->addItem( "4" );
@@ -309,7 +309,7 @@ QGroupBox *COptions2DViewsTab::addGridGroup()
 	m_pDottedGridBox = new QCheckBox( tr( "Dotted Grid" ) );
 	m_pHideGridSmallerThan4PixelsBox = new QCheckBox( tr( "Hide grid smaller than 4 pixels" ), this );
 
-	auto pGridLinesLayout = new QHBoxLayout( this );
+	auto pGridLinesLayout = new QHBoxLayout();
 	pGridLinesLayout->setSpacing( 0 );
 	m_pHighlightEveryXGridLinesBox = new QCheckBox( tr( "Highlight every" ) );
 	m_pHighlightEveryXGridLinesLine = new QLineEdit( this );
@@ -341,7 +341,7 @@ QGroupBox *COptions2DViewsTab::addGridGroup()
 COptions3DViewsTab::COptions3DViewsTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QVBoxLayout( this );
+	auto pWidgetLayout = new QVBoxLayout();
 
 	pWidgetLayout->addWidget( addPerformanceBox(), 0, Qt::AlignTop );
 	pWidgetLayout->addWidget( addNavigationBox(), 0, Qt::AlignTop );
@@ -401,7 +401,7 @@ QGroupBox *COptions3DViewsTab::addGeneralBox()
 	m_pReverseSelectionOrder = new QCheckBox( tr( "Reverse selection order" ), this );
 	m_pDrawSkyboxPreview = new QCheckBox( tr( "Draw skybox preview" ), this );
 
-	auto pCamFovLayout = new QHBoxLayout( this );
+	auto pCamFovLayout = new QHBoxLayout();
 	auto pCamFovLabel = new QLabel( tr( "Camera FOV (30-100)" ), this );
 	m_pCameraFov = new QSpinBox( this );
 	m_pCameraFov->setFixedWidth( 40 );
@@ -412,7 +412,7 @@ QGroupBox *COptions3DViewsTab::addGeneralBox()
 	pCamFovLayout->addWidget( pCamFovLabel );
 	pCamFovLayout->addWidget( m_pCameraFov, 0, Qt::AlignRight );
 
-	auto pLightSpotLayout = new QHBoxLayout( this );
+	auto pLightSpotLayout = new QHBoxLayout();
 	auto pLightSpotLabel = new QLabel( tr( "Light_spot cone multiplier" ), this );
 	m_pLightSpotConeModifier = new QSpinBox( this );
 	m_pLightSpotConeModifier->setFixedWidth( 40 );
@@ -437,7 +437,7 @@ QGroupBox *COptions3DViewsTab::addGeneralBox()
 COptionsGameConfigsTab::COptionsGameConfigsTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QVBoxLayout( this );
+	auto pWidgetLayout = new QVBoxLayout();
 
 	// todo: Some of these really need to just be files, but CFileSelector doesn't allow that.
 	m_pCordonTexture = new CFileSelector( this, CFileSelector::DirsOnly );
@@ -475,7 +475,7 @@ COptionsGameConfigsTab::COptionsGameConfigsTab( QWidget *pParent ) :
 
 QGridLayout *COptionsGameConfigsTab::addConfigAndGameDataLayout()	
 {
-	auto pConfigLayout = new QGridLayout( this );
+	auto pConfigLayout = new QGridLayout();
 
 	auto pConfigLabel = new QLabel( tr( "Configuration:" ) );
 	m_pConfigCombo = new QComboBox( this );
@@ -487,8 +487,8 @@ QGridLayout *COptionsGameConfigsTab::addConfigAndGameDataLayout()
 	m_pGameDataList->setFixedHeight( 50 );
 	m_pGameDataList->addItem( "path/to/momentum.fgd" );
 
-	auto pButtonLayout = new QVBoxLayout( this );
-	auto pAddEditLayout = new QHBoxLayout( this );
+	auto pButtonLayout = new QVBoxLayout();
+	auto pAddEditLayout = new QHBoxLayout();
 	auto pGameDataAddButton = new QPushButton( tr( "Add" ), this );
 	auto pGameDataEditButton = new QPushButton( tr( "Edit" ), this );
 	auto pRemoveButton = new QPushButton( tr( "Remove" ), this );
@@ -522,7 +522,7 @@ QGridLayout *COptionsGameConfigsTab::addConfigAndGameDataLayout()
 
 QGridLayout *COptionsGameConfigsTab::addEntityAndScaleLayout()
 {
-	auto pGridLayout = new QGridLayout( this );
+	auto pGridLayout = new QGridLayout();
 
 	auto pDefPointEntLabel = new QLabel( tr( "Default PointEntity class:" ), this );
 	m_pDefaultPointEntity = new QComboBox( this );
@@ -534,7 +534,7 @@ QGridLayout *COptionsGameConfigsTab::addEntityAndScaleLayout()
 	m_pDefaultSolidEntity->addItem( "func_detail" );
 	m_pDefaultSolidEntity->setEditable( true );
 
-	auto pScaleLayout = new QHBoxLayout( this );
+	auto pScaleLayout = new QHBoxLayout();
 	auto pDefTexScaleLabel = new QLabel( tr( "Default texture scale:" ), this );
 	m_pDefTextureScale = new QLineEdit( "0.25", this );
 	m_pDefTextureScale->setFixedWidth( 30 );
@@ -585,7 +585,7 @@ void COptionsGameConfigsTab::onGameDataRemovePressed()
 COptionsBuildProgramsTab::COptionsBuildProgramsTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QGridLayout( this );
+	auto pWidgetLayout = new QGridLayout();
 
 	auto pConfigLabel = new QLabel( tr( "Configuration:" ) );
 	m_pConfigCombo = new QComboBox( this );
@@ -638,7 +638,7 @@ COptionsBuildProgramsTab::COptionsBuildProgramsTab( QWidget *pParent ) :
 COptionsMaterialsTab::COptionsMaterialsTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QVBoxLayout( this );
+	auto pWidgetLayout = new QVBoxLayout();
 
 	m_pEnableColor = new QCheckBox( tr( "Enable color sort in material browser (requires restart)" ), this );
 
@@ -686,7 +686,7 @@ void COptionsMaterialsTab::onRemovePressed()
 COptionsColorsTab::COptionsColorsTab( QWidget *pParent ) :
 	QWidget( pParent )
 {
-	auto pWidgetLayout = new QVBoxLayout( this );
+	auto pWidgetLayout = new QVBoxLayout();
 
 	m_pCustomColors = new QCheckBox( tr( "Custom Colors" ), this );
 
