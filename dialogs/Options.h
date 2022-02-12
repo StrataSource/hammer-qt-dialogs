@@ -52,6 +52,7 @@ namespace ui
 		// Window Setup
 		QCheckBox *m_pUseIndependentWindowConfigs;
 		QCheckBox *m_pLoadDefaultWindowPosWithMaps;
+		QCheckBox *m_pShowMessagesWindowOnStartUp;
 
 		// Autosave
 		QCheckBox *m_pEnableAutosave;

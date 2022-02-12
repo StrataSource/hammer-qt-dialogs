@@ -142,8 +142,10 @@ QGroupBox *COptionsGeneralTab::addWindowSetupGroup()
 	auto pWindowSetupLayout = new QVBoxLayout( pWindowSetupGroup );
 	m_pUseIndependentWindowConfigs = new QCheckBox( tr( "Use independent window configurations" ), this );
 	m_pLoadDefaultWindowPosWithMaps = new QCheckBox( tr( "Load default window positions with maps" ), this );
+	m_pShowMessagesWindowOnStartUp = new QCheckBox( tr( "Show windows messages on startup" ), this );
 	pWindowSetupLayout->addWidget( m_pUseIndependentWindowConfigs );
 	pWindowSetupLayout->addWidget( m_pLoadDefaultWindowPosWithMaps );
+	pWindowSetupLayout->addWidget( m_pShowMessagesWindowOnStartUp );
 
 	return pWindowSetupGroup;
 }
