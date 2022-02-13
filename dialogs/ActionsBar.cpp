@@ -18,22 +18,22 @@ CActionsBar::CActionsBar( QWidget *pParent ) :
 
 	m_pDialogLayout = new QHBoxLayout();
 
-	this->addAction( ":/zoo_textures/128x128.png", &print_message );
-	this->addAction( ":/zoo_textures/128x128.png", &print_message );
+	this->addAction( ":/zoo_textures/128x128.png", "A message", & print_message );
+	this->addAction( ":/zoo_textures/128x128.png", "", &print_message );
 	this->addSeparator();
-	this->addAction( ":/zoo_textures/128x128.png", &print_message );
-	this->addAction( ":/zoo_textures/128x128.png", &print_message );
+	this->addAction( ":/zoo_textures/128x128.png", "", &print_message );
+	this->addAction( ":/zoo_textures/128x128.png", "", &print_message );
 
 	this->setLayout( m_pDialogLayout );
 	this->setMinimumSize( this->sizeHint() );
 }
 
-void CActionsBar::addAction( const QString &pIconPath, const std::function<void()> &func )
+void CActionsBar::addAction( const QString &pIconPath, const QString& pToolTip, const std::function<void()> &func )
 {
 	auto pButton = new QPushButton( this );
 	pButton->setIcon( QIcon( QPixmap( pIconPath ) ) );
 	pButton->setIconSize( QSize( 32, 32 ) );
-	pButton->setFlat( true );
+	pButton->setToolTip( pToolTip );
 	pButton->setFixedHeight( 64 );
 	pButton->setFixedWidth( 64 );
 

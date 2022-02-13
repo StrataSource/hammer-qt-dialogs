@@ -15,7 +15,7 @@ namespace ui
 	public:
 		CActionsBar( QWidget *pParent );
 
-		void addAction( const QString &pIconPath, const std::function<void()> &func );
+		void addAction( const QString &pIconPath, const QString &pToolTip, const std::function<void()> &func );
 		void addSeparator();
 
 	private:
