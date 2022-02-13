@@ -3,7 +3,6 @@
 #include <QLabel>
 #include <QDebug>
 
-
 using namespace ui;
 
 void print_message()
@@ -11,25 +10,43 @@ void print_message()
 	qDebug() << "Some words!";
 }
 
-CActionsBar::CActionsBar( QWidget *pParent ) :
+CActionsBarDialog::CActionsBarDialog( QWidget *pParent ) :
 	QDialog( pParent )
 {
-	this->setWindowTitle( "Action Bar" );
+	this->setWindowTitle( "Actions Bar Example" );
 
-	m_pDialogLayout = new QHBoxLayout();
+	auto pDialogLayout = new QHBoxLayout();
 
-	this->addAction( ":/zoo_textures/128x128.png", "A message", & print_message );
-	this->addAction( ":/zoo_textures/128x128.png", "", &print_message );
-	this->addSeparator();
-	this->addAction( ":/zoo_textures/128x128.png", "", &print_message );
-	this->addAction( ":/zoo_textures/128x128.png", "", &print_message );
+	m_pVActionsBar = new CVActionsBar( this );
+	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+	m_pVActionsBar->addSeparator();
+	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
 
-	this->setLayout( m_pDialogLayout );
+	m_pHActionsBar = new CHActionsBar( this );
+	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+	m_pHActionsBar->addSeparator();
+	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+
+	pDialogLayout->addWidget( m_pVActionsBar );
+	pDialogLayout->addWidget( m_pHActionsBar );
+
+	this->setLayout( pDialogLayout );
 	this->setMinimumSize( this->sizeHint() );
 }
 
-void CActionsBar::addAction( const QString &pIconPath, const QString& pToolTip, const std::function<void()> &func )
+//-----------------------------------------------------------------------------------------//
+
+CActionsBar::CActionsBar( QWidget *pParent ) :
+	QWidget( pParent )
 {
+
+}
+
+void CActionsBar::addButton( const QString &pIconPath, const QString& pToolTip, const std::function<void()> &func )
+{
+	if ( !m_pDialogLayout )
+		return;
+
 	auto pButton = new QPushButton( this );
 	pButton->setIcon( QIcon( QPixmap( pIconPath ) ) );
 	pButton->setIconSize( QSize( 32, 32 ) );
@@ -44,8 +61,27 @@ void CActionsBar::addAction( const QString &pIconPath, const QString& pToolTip, 
 
 void CActionsBar::addSeparator()
 {
-	auto pSepLine = new QFrame();
+	if ( !m_pDialogLayout )
+		return;
+
+	auto pSepLine = new QFrame( this );
 	pSepLine->setFrameShape( QFrame::VLine );
 	pSepLine->setFrameShadow( QFrame::Raised );
 	m_pDialogLayout->addWidget( pSepLine );
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CHActionsBar::CHActionsBar( QWidget *pParent ) :
+	CActionsBar( pParent )
+{
+	m_pDialogLayout = new QHBoxLayout( this );
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CVActionsBar::CVActionsBar( QWidget *pParent ) :
+	CActionsBar( pParent )
+{
+	m_pDialogLayout = new QVBoxLayout( this );
 }
