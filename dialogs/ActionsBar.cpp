@@ -65,7 +65,14 @@ void CActionsBar::addSeparator()
 		return;
 
 	auto pSepLine = new QFrame( this );
-	pSepLine->setFrameShape( QFrame::VLine );
+
+	// Set the sep bar shape
+	if ( m_pDialogLayout->direction() == QBoxLayout::LeftToRight ||
+		m_pDialogLayout->direction() == QBoxLayout::RightToLeft )
+		pSepLine->setFrameShape( QFrame::VLine );
+	else
+		pSepLine->setFrameShape( QFrame::HLine );
+
 	pSepLine->setFrameShadow( QFrame::Raised );
 	m_pDialogLayout->addWidget( pSepLine );
 }
