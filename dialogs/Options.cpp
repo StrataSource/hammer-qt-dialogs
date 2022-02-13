@@ -848,19 +848,21 @@ void CColorPushButton::paintEvent( QPaintEvent *pe )
 	QPushButton::paintEvent( pe );
 
 	QPainter p( this );
+
 	// We set it to 14 since the pen adds 1 pixels
 	QRect rect( 7, 4, 14, 14 );
 	QPoint center( this->rect().center().x() - 1, this->rect().center().y() - 1 );
-
 	rect.moveCenter( center );
 
 	// Give it a black border
 	p.setPen( Qt::black );
+
 	// If we're disabled, colour our box white instead
 	// if we're not, then paint our normal colour
 	if ( !isEnabled() )
 		p.setBrush( Qt::white );
 	else
 		p.setBrush( m_Color );
+
 	p.drawRect( rect );
 }
