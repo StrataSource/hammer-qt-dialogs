@@ -36,11 +36,22 @@ namespace ui
 	public:
 		// Todo: Is this name really clear? QWidget already has addAction
 		// so we dont really have any alternatives
-		void addButton( const QString &pIconPath, const QString &pToolTip, const std::function<void()> &func );
+		class CActionBarButton *addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func );
 		void addSeparator();
 
-	protected:
 		QBoxLayout *m_pDialogLayout;
+	};
+
+	//-----------------------------------------------------------------------------------------//
+
+	class CActionBarButton : public QPushButton
+	{
+		Q_OBJECT
+	public:
+		CActionBarButton( QWidget *pParent );
+
+	protected:
+		void paintEvent( QPaintEvent *pe ) override;
 	};
 
 	//-----------------------------------------------------------------------------------------//

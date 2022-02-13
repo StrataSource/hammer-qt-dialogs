@@ -1,6 +1,8 @@
 #include "dialogs/ActionsBar.h"
 
 #include <QLabel>
+#include <QPainter>
+#include <QStyleOptionButton>
 #include <QDebug>
 
 using namespace ui;
@@ -18,14 +20,14 @@ CActionsBarDialog::CActionsBarDialog( QWidget *pParent ) :
 	auto pDialogLayout = new QHBoxLayout();
 
 	m_pVActionsBar = new CVActionsBar( this );
-	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", false, &print_message );
 	m_pVActionsBar->addSeparator();
-	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", false, &print_message );
 
 	m_pHActionsBar = new CHActionsBar( this );
-	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", false, &print_message );
 	m_pHActionsBar->addSeparator();
-	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", &print_message );
+	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", true, &print_message );
 
 	pDialogLayout->addWidget( m_pVActionsBar );
 	pDialogLayout->addWidget( m_pHActionsBar );
@@ -42,14 +44,17 @@ CActionsBar::CActionsBar( QWidget *pParent ) :
 
 }
 
-void CActionsBar::addButton( const QString &pIconPath, const QString& pToolTip, const std::function<void()> &func )
+CActionBarButton *CActionsBar::addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func )
 {
 	if ( !m_pDialogLayout )
-		return;
+		return NULL;
 
-	auto pButton = new QPushButton( this );
+	auto pButton = new CActionBarButton( this );
 	pButton->setIcon( QIcon( QPixmap( pIconPath ) ) );
 	pButton->setIconSize( QSize( 32, 32 ) );
+
+	pButton->setCheckable( bCheckable );
+
 	pButton->setToolTip( pToolTip );
 	pButton->setFixedHeight( 64 );
 	pButton->setFixedWidth( 64 );
@@ -57,6 +62,8 @@ void CActionsBar::addButton( const QString &pIconPath, const QString& pToolTip, 
 	m_pDialogLayout->addWidget( pButton );
 
 	connect( pButton, &QPushButton::released, this, func );
+
+	return pButton;
 }
 
 void CActionsBar::addSeparator()
@@ -75,6 +82,21 @@ void CActionsBar::addSeparator()
 
 	pSepLine->setFrameShadow( QFrame::Raised );
 	m_pDialogLayout->addWidget( pSepLine );
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CActionBarButton::CActionBarButton( QWidget *pParent ) :
+	QPushButton( pParent )
+{
+
+}
+
+void CActionBarButton::paintEvent( QPaintEvent *pe )
+{
+	// TODO: Get rid of the background for the button
+
+	QPushButton::paintEvent( pe );
 }
 
 //-----------------------------------------------------------------------------------------//
