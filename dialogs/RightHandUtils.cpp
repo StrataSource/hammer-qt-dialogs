@@ -3,7 +3,7 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QFrame>
+#include <QTabWidget>
 
 using namespace ui;
 
@@ -16,10 +16,13 @@ CRightHandUtils::CRightHandUtils( QWidget *pParent ) :
 
 	auto pSelect = new CSelectWidget( this );
 	auto pTextureGroup = new CTextureGroupWidget( this );
+	auto pVisGroups = new CVisgroupsWidget( this );
 
 	pDialogLayout->addWidget( pSelect );
 	pDialogLayout->addSpacing( 5 );
 	pDialogLayout->addWidget( pTextureGroup );
+	pDialogLayout->addSpacing( 5 );
+	pDialogLayout->addWidget( pVisGroups );
 
 	this->setLayout( pDialogLayout );
 	this->setMinimumSize( this->sizeHint() );
@@ -117,4 +120,30 @@ CTextureGroupWidget::CTextureGroupWidget( QWidget *pParent ) :
 
 	this->setLayout( pWidgetLayout );
 	this->setMinimumSize( this->sizeHint() );
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CVisgroupsWidget::CVisgroupsWidget( QWidget *pParent ) :
+	QWidget( pParent )
+{
+	auto pWidgetLayout = new QVBoxLayout();
+
+	auto pHeader = new QLabel( tr( "VisGroups:" ), this );
+
+	m_pUserTree = new QTreeWidget( this );
+	m_pAutoTree = new QTreeWidget( this );
+	m_pCordonTree = new QTreeWidget( this );
+
+	auto pTabWidget = new QTabWidget( this );
+	pTabWidget->addTab( m_pUserTree, tr( "User" ) );
+	pTabWidget->addTab( m_pAutoTree, tr( "Auto" ) );
+	pTabWidget->addTab( m_pCordonTree, tr( "Cordon" ) );
+
+	pWidgetLayout->addWidget( pHeader );
+	pWidgetLayout->addWidget( pTabWidget );
+
+	this->setLayout( pWidgetLayout );
+	this->setFixedHeight( 200 );
+	this->setFixedWidth( 180 );
 }

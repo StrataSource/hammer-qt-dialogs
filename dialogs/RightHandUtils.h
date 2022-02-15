@@ -6,6 +6,7 @@
 #include <QButtonGroup>
 #include <QComboBox>
 #include <QLabel>
+#include <QTreeWidget>
 
 namespace ui
 {
@@ -55,5 +56,18 @@ namespace ui
 		QPushButton *m_pReplaceButton;
 		QPushButton *m_pFavoriteButton;
 		QPushButton *m_pNoDrawButton;
+	};
+
+	//-----------------------------------------------------------------------------------------//
+
+	class CVisgroupsWidget : public QWidget
+	{
+		Q_OBJECT
+	public:
+		CVisgroupsWidget( QWidget *pParent );
+
+		QTreeWidget *m_pUserTree;
+		QTreeWidget *m_pAutoTree;
+		QTreeWidget *m_pCordonTree;
 	};
 } // namespace ui
