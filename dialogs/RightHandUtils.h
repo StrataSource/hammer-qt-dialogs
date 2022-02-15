@@ -44,11 +44,16 @@ namespace ui
 	public:
 		CTextureGroupWidget( QWidget *pParent );
 
+		//void setTexture( const QString &pTexturePath );
+
+		QLabel *m_pTextureLabel;
+
 		QComboBox *m_pModSelectorBox;
 		QComboBox *m_pCurrentTextureBox;
 
 		QPushButton *m_pBrowseButton;
 		QPushButton *m_pReplaceButton;
-		QPushButton *m_pBrowseButton;
+		QPushButton *m_pFavoriteButton;
+		QPushButton *m_pNoDrawButton;
 	};
 } // namespace ui

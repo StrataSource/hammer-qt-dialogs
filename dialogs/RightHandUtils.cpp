@@ -1,5 +1,6 @@
 #include "dialogs/RightHandUtils.h"
 
+#include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QFrame>
@@ -18,7 +19,7 @@ CRightHandUtils::CRightHandUtils( QWidget *pParent ) :
 
 	pDialogLayout->addWidget( pSelect );
 	pDialogLayout->addSpacing( 5 );
-	pDialogLayout->addWidget( pSelect );
+	pDialogLayout->addWidget( pTextureGroup );
 
 	this->setLayout( pDialogLayout );
 	this->setMinimumSize( this->sizeHint() );
@@ -84,8 +85,35 @@ CTextureGroupWidget::CTextureGroupWidget( QWidget *pParent ) :
 	auto pWidgetLayout = new QVBoxLayout();
 
 	auto pHeader = new QLabel( tr( "Texture Group:" ), this );
+	auto pCurrentTextureHeader = new QLabel( tr( "Current Texture:" ), this );
+
+	m_pModSelectorBox = new QComboBox( this );
+	m_pCurrentTextureBox = new QComboBox( this );
+	m_pCurrentTextureBox->setEditable( true );
+
+	auto pTexAndButLayout = new QGridLayout();
+
+	m_pTextureLabel = new QLabel( this );
+	auto pPixMap = new QPixmap( ":/zoo_textures/128x128.png" );
+	m_pTextureLabel->setPixmap( pPixMap->scaled( 80, 80 ) );
+
+	m_pBrowseButton = new QPushButton( tr( "Browse..." ), this );
+	m_pReplaceButton = new QPushButton( tr( "Replace..." ), this );
+	m_pFavoriteButton = new QPushButton( tr( "Favorite" ), this );
+	m_pNoDrawButton = new QPushButton( tr( "Nodraw" ), this );
+
+	pTexAndButLayout->addWidget( m_pTextureLabel, 0, 0, Qt::AlignBottom );
+	pTexAndButLayout->addWidget( m_pBrowseButton, 0, 1 );
+	pTexAndButLayout->addWidget( m_pFavoriteButton, 0, 1, Qt::AlignBottom );
+	pTexAndButLayout->addWidget( m_pReplaceButton, 2, 1, Qt::AlignTop );
+	pTexAndButLayout->addWidget( m_pNoDrawButton, 2, 0 );
 
 	pWidgetLayout->addWidget( pHeader );
+	pWidgetLayout->addWidget( m_pModSelectorBox );
+	pWidgetLayout->addWidget( pCurrentTextureHeader );
+	pWidgetLayout->addWidget( m_pCurrentTextureBox );
+	pWidgetLayout->addLayout( pTexAndButLayout );
+
 
 	this->setLayout( pWidgetLayout );
 	this->setMinimumSize( this->sizeHint() );
