@@ -19,6 +19,7 @@
 #include "dialogs/MapDiff.h"
 #include "dialogs/MoveToVisgroup.h"
 #include "dialogs/SoundBrowser.h"
+#include "dialogs/RightHandUtils.h"
 
 using namespace ui;
 
@@ -56,7 +57,8 @@ static zooDialog_t s_zooDialogs[] =
 	{"Map Diff",				makeZooDialog<CMapDiff>			},
 	{"Move to visgroup",		makeZooDialog<CMoveToVisgroup>	},
 	{"Sound Browser",			makeZooDialog<CSoundBrowser>	},
-	{"Options",					makeZooDialog<COptions>			}
+	{"Options",					makeZooDialog<COptions>			},
+	{"Right hand utils",		makeZooDialog<CRightHandUtils>	}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
