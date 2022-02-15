@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QButtonGroup>
+#include <QComboBox>
 #include <QLabel>
 
 namespace ui
@@ -34,4 +35,20 @@ namespace ui
 		void onObjectsPressed();
 		void onSolidsPressed();
 	};
-}
+
+	//-----------------------------------------------------------------------------------------//
+
+	class CTextureGroupWidget : public QWidget
+	{
+		Q_OBJECT
+	public:
+		CTextureGroupWidget( QWidget *pParent );
+
+		QComboBox *m_pModSelectorBox;
+		QComboBox *m_pCurrentTextureBox;
+
+		QPushButton *m_pBrowseButton;
+		QPushButton *m_pReplaceButton;
+		QPushButton *m_pBrowseButton;
+	};
+} // namespace ui

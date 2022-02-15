@@ -11,10 +11,13 @@ CRightHandUtils::CRightHandUtils( QWidget *pParent ) :
 {
 	this->setWindowTitle( "Right Hand Utils Example" );
 
-	auto pDialogLayout = new QHBoxLayout();
+	auto pDialogLayout = new QVBoxLayout();
 
 	auto pSelect = new CSelectWidget( this );
+	auto pTextureGroup = new CTextureGroupWidget( this );
 
+	pDialogLayout->addWidget( pSelect );
+	pDialogLayout->addSpacing( 5 );
 	pDialogLayout->addWidget( pSelect );
 
 	this->setLayout( pDialogLayout );
@@ -71,4 +74,19 @@ void CSelectWidget::onObjectsPressed()
 void CSelectWidget::onSolidsPressed()
 {
 	// QT_TODO
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CTextureGroupWidget::CTextureGroupWidget( QWidget *pParent ) :
+	QWidget( pParent )
+{
+	auto pWidgetLayout = new QVBoxLayout();
+
+	auto pHeader = new QLabel( tr( "Texture Group:" ), this );
+
+	pWidgetLayout->addWidget( pHeader );
+
+	this->setLayout( pWidgetLayout );
+	this->setMinimumSize( this->sizeHint() );
 }
