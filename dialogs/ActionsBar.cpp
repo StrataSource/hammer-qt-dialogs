@@ -1,8 +1,7 @@
 #include "dialogs/ActionsBar.h"
 
 #include <QLabel>
-#include <QPainter>
-#include <QStyleOptionButton>
+#include <QHBoxLayout>
 #include <QDebug>
 
 using namespace ui;
@@ -19,18 +18,19 @@ CActionsBarDialog::CActionsBarDialog( QWidget *pParent ) :
 
 	auto pDialogLayout = new QHBoxLayout();
 
-	m_pVActionsBar = new CVActionsBar( this );
+	m_pVActionsBar = new CActionsBar( this, Qt::Vertical );
 	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", false, &print_message );
 	m_pVActionsBar->addSeparator();
 	m_pVActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", false, &print_message );
 
-	m_pHActionsBar = new CHActionsBar( this );
+	m_pHActionsBar = new CActionsBar( this );
+	m_pHActionsBar->setIconSize( QSize( 128, 128 ) );
 	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", false, &print_message );
 	m_pHActionsBar->addSeparator();
 	m_pHActionsBar->addButton( ":/zoo_textures/64x64.png", "This is a test button", true, &print_message );
 
 	pDialogLayout->addWidget( m_pVActionsBar );
-	pDialogLayout->addWidget( m_pHActionsBar );
+	pDialogLayout->addWidget( m_pHActionsBar );	
 
 	this->setLayout( pDialogLayout );
 	this->setMinimumSize( this->sizeHint() );
@@ -38,79 +38,44 @@ CActionsBarDialog::CActionsBarDialog( QWidget *pParent ) :
 
 //-----------------------------------------------------------------------------------------//
 
-CActionsBar::CActionsBar( QWidget *pParent ) :
+CActionsBar::CActionsBar( QWidget *pParent, Qt::Orientation orientation ) :
 	QWidget( pParent )
 {
-
+	m_pToolBar = new QToolBar( this );
+	m_pToolBar->setOrientation( orientation );
 }
 
-CActionBarButton *CActionsBar::addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func )
+QAction *CActionsBar::addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func )
 {
-	if ( !m_pDialogLayout )
+	if ( !m_pToolBar )
 		return NULL;
 
-	auto pButton = new CActionBarButton( this );
+	auto pButton = new QAction( this );
 	pButton->setIcon( QIcon( QPixmap( pIconPath ) ) );
-	pButton->setIconSize( QSize( 32, 32 ) );
-
+	pButton->setToolTip( pToolTip );
+	pButton->setStatusTip( pToolTip );
 	pButton->setCheckable( bCheckable );
 
-	pButton->setToolTip( pToolTip );
-	pButton->setFixedHeight( 64 );
-	pButton->setFixedWidth( 64 );
+	m_pToolBar->addAction( pButton );
 
-	m_pDialogLayout->addWidget( pButton );
+	connect( pButton, &QAction::triggered, this, func );
 
-	connect( pButton, &QPushButton::released, this, func );
-
+	// Return it, just in case we need a pointer to the action
 	return pButton;
 }
 
 void CActionsBar::addSeparator()
 {
-	if ( !m_pDialogLayout )
+	if ( !m_pToolBar )
 		return;
 
-	auto pSepLine = new QFrame( this );
-
-	// Set the sep bar shape
-	if ( m_pDialogLayout->direction() == QBoxLayout::LeftToRight ||
-		m_pDialogLayout->direction() == QBoxLayout::RightToLeft )
-		pSepLine->setFrameShape( QFrame::VLine );
-	else
-		pSepLine->setFrameShape( QFrame::HLine );
-
-	pSepLine->setFrameShadow( QFrame::Raised );
-	m_pDialogLayout->addWidget( pSepLine );
+	m_pToolBar->addSeparator();
 }
 
-//-----------------------------------------------------------------------------------------//
-
-CActionBarButton::CActionBarButton( QWidget *pParent ) :
-	QPushButton( pParent )
+void CActionsBar::setIconSize( const QSize &pSize )
 {
+	if ( !m_pToolBar )
+		return;
 
-}
-
-void CActionBarButton::paintEvent( QPaintEvent *pe )
-{
-	// TODO: Get rid of the background for the button
-
-	QPushButton::paintEvent( pe );
-}
-
-//-----------------------------------------------------------------------------------------//
-
-CHActionsBar::CHActionsBar( QWidget *pParent ) :
-	CActionsBar( pParent )
-{
-	m_pDialogLayout = new QHBoxLayout( this );
-}
-
-//-----------------------------------------------------------------------------------------//
-
-CVActionsBar::CVActionsBar( QWidget *pParent ) :
-	CActionsBar( pParent )
-{
-	m_pDialogLayout = new QVBoxLayout( this );
+	m_pToolBar->setIconSize( pSize );
 }

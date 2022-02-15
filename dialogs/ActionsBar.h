@@ -2,9 +2,8 @@
 
 #include <QDialog>
 #include <QPixmap>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QPushButton>
+#include <QAction>
+#include <QToolBar>
 
 #include <functional>
 
@@ -18,58 +17,32 @@ namespace ui
 		CActionsBarDialog( QWidget *pParent );
 
 	private:
-		class CHActionsBar *m_pHActionsBar;
-		class CVActionsBar *m_pVActionsBar;
+		class CActionsBar *m_pHActionsBar;
+		class CActionsBar *m_pVActionsBar;
 	};
 
 	//-----------------------------------------------------------------------------------------//
 
-	// This is the base class for the actions bar
-	// we create 2 other ones so it's easier to know
-	// which is horizontal and which is vertical
+	// Wrapper for QToolBar to make stuff a little less verbose
 	class CActionsBar : public QWidget
 	{
 		Q_OBJECT
-	protected:
-		CActionsBar( QWidget *pParent );
 
 	public:
+		CActionsBar( QWidget *pParent, Qt::Orientation orientation = Qt::Horizontal );
+
 		// Todo: Is this name really clear? QWidget already has addAction
 		// so we dont really have any alternatives
-		class CActionBarButton *addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func );
+		QAction *addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func );
 		void addSeparator();
 
-		QBoxLayout *m_pDialogLayout;
-	};
+		// todo: Since we have getToolBar(), is this really needed?
+		void setIconSize(const QSize &pSize);
 
-	//-----------------------------------------------------------------------------------------//
+		QToolBar *getToolBar() { return m_pToolBar; };
 
-	class CActionBarButton : public QPushButton
-	{
-		Q_OBJECT
-	public:
-		CActionBarButton( QWidget *pParent );
-
-	protected:
-		void paintEvent( QPaintEvent *pe ) override;
-	};
-
-	//-----------------------------------------------------------------------------------------//
-
-	class CHActionsBar : public CActionsBar
-	{
-		Q_OBJECT
-	public:
-		CHActionsBar( QWidget *pParent );
-	};
-
-	//-----------------------------------------------------------------------------------------//
-
-	class CVActionsBar : public CActionsBar
-	{
-		Q_OBJECT
-	public:
-		CVActionsBar( QWidget *pParent );
+	private:
+		QToolBar *m_pToolBar;
 	};
 
 } // namespace ui
