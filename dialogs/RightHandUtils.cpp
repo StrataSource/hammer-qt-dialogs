@@ -99,6 +99,7 @@ CTextureGroupWidget::CTextureGroupWidget( QWidget *pParent ) :
 
 	auto pTexAndButLayout = new QGridLayout();
 
+	m_pTexSizeLabel = new QLabel( "128x128", this );
 	m_pTextureLabel = new QLabel( this );
 	auto pPixMap = new QPixmap( ":/zoo_textures/128x128.png" );
 	m_pTextureLabel->setPixmap( pPixMap->scaled( 80, 80 ) );
@@ -108,7 +109,10 @@ CTextureGroupWidget::CTextureGroupWidget( QWidget *pParent ) :
 	m_pFavoriteButton = new QPushButton( tr( "Favorite" ), this );
 	m_pNoDrawButton = new QPushButton( tr( "Nodraw" ), this );
 
+	// This was a pain in the ass to actually get working
+	// Qt's layout system didn't like me having to add the tex size label
 	pTexAndButLayout->addWidget( m_pTextureLabel, 0, 0, Qt::AlignBottom );
+	pTexAndButLayout->addWidget( m_pTexSizeLabel, 0, 1, Qt::AlignTop );
 	pTexAndButLayout->addWidget( m_pBrowseButton, 0, 1 );
 	pTexAndButLayout->addWidget( m_pReplaceButton, 0, 1, Qt::AlignBottom );
 	pTexAndButLayout->addWidget( m_pFavoriteButton, 2, 1, Qt::AlignTop );

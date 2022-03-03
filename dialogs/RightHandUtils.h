@@ -49,6 +49,7 @@ namespace ui
 		//void setTexture( const QString &pTexturePath );
 
 		QLabel *m_pTextureLabel;
+		QLabel *m_pTexSizeLabel;
 
 		QComboBox *m_pModSelectorBox;
 		QComboBox *m_pCurrentTextureBox;
