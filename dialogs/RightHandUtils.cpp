@@ -179,7 +179,7 @@ CVisgroupsWidget::CVisgroupsWidget( QWidget *pParent ) :
 	connect( m_pDownButton, &QPushButton::released, this, &CVisgroupsWidget::onDownPresed );
 
 	this->setLayout( pWidgetLayout );
-	this->setFixedHeight( 200 );
+	this->setMaximumHeight( 200 );
 	this->setFixedWidth( 180 );
 }
 
