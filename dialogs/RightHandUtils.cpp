@@ -110,8 +110,8 @@ CTextureGroupWidget::CTextureGroupWidget( QWidget *pParent ) :
 
 	pTexAndButLayout->addWidget( m_pTextureLabel, 0, 0, Qt::AlignBottom );
 	pTexAndButLayout->addWidget( m_pBrowseButton, 0, 1 );
-	pTexAndButLayout->addWidget( m_pFavoriteButton, 0, 1, Qt::AlignBottom );
-	pTexAndButLayout->addWidget( m_pReplaceButton, 2, 1, Qt::AlignTop );
+	pTexAndButLayout->addWidget( m_pReplaceButton, 0, 1, Qt::AlignBottom );
+	pTexAndButLayout->addWidget( m_pFavoriteButton, 2, 1, Qt::AlignTop );
 	pTexAndButLayout->addWidget( m_pNoDrawButton, 2, 0 );
 
 	pWidgetLayout->addWidget( pHeader );
