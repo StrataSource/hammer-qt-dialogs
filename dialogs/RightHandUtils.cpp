@@ -17,12 +17,15 @@ CRightHandUtils::CRightHandUtils( QWidget *pParent ) :
 	auto pSelect = new CSelectWidget( this );
 	auto pTextureGroup = new CTextureGroupWidget( this );
 	auto pVisGroups = new CVisgroupsWidget( this );
+	auto pPrefabs = new CPrefabsWidget( this );
 
 	pDialogLayout->addWidget( pSelect );
 	pDialogLayout->addSpacing( 5 );
 	pDialogLayout->addWidget( pTextureGroup );
 	pDialogLayout->addSpacing( 5 );
 	pDialogLayout->addWidget( pVisGroups );
+	pDialogLayout->addSpacing( 5 );
+	pDialogLayout->addWidget( pPrefabs );
 
 	this->setLayout( pDialogLayout );
 	this->setMinimumSize( this->sizeHint() );
@@ -140,10 +143,123 @@ CVisgroupsWidget::CVisgroupsWidget( QWidget *pParent ) :
 	pTabWidget->addTab( m_pAutoTree, tr( "Auto" ) );
 	pTabWidget->addTab( m_pCordonTree, tr( "Cordon" ) );
 
+	auto pButtonLayout = new QHBoxLayout();
+	m_pShowButton = new QPushButton( tr( "Show" ), this );
+	m_pEditButton = new QPushButton( tr( "Edit" ), this );
+	m_pMarkButton = new QPushButton( tr( "Mark" ), this );
+	m_pUpButton = new QPushButton( "e", this );
+	m_pDownButton = new QPushButton( "e", this );
+
+	// Sets the buttons to an okay size
+	m_pShowButton->setMaximumHeight( 20 );
+	m_pEditButton->setMaximumHeight( 20 );
+	m_pMarkButton->setMaximumHeight( 20 );
+	m_pUpButton->setMaximumSize( 20, 20 );
+	m_pDownButton->setMaximumSize( 20, 20 );
+
+	pButtonLayout->setSpacing( 1 );
+	pButtonLayout->addWidget( m_pShowButton );
+	pButtonLayout->addWidget( m_pEditButton );
+	pButtonLayout->addWidget( m_pMarkButton );
+	pButtonLayout->addWidget( m_pUpButton );
+	pButtonLayout->addWidget( m_pDownButton );
+
 	pWidgetLayout->addWidget( pHeader );
 	pWidgetLayout->addWidget( pTabWidget );
+	pWidgetLayout->addLayout( pButtonLayout );
+
+	connect( m_pShowButton, &QPushButton::released, this, &CVisgroupsWidget::onShowPressed );
+	connect( m_pEditButton, &QPushButton::released, this, &CVisgroupsWidget::onEditPressed );
+	connect( m_pMarkButton, &QPushButton::released, this, &CVisgroupsWidget::onMarkPressed );
+	connect( m_pUpButton, &QPushButton::released, this, &CVisgroupsWidget::onUpPressed );
+	connect( m_pDownButton, &QPushButton::released, this, &CVisgroupsWidget::onDownPresed );
 
 	this->setLayout( pWidgetLayout );
 	this->setFixedHeight( 200 );
 	this->setFixedWidth( 180 );
+}
+
+void CVisgroupsWidget::onShowPressed()
+{
+	// QT_TODO
+}
+
+void CVisgroupsWidget::onEditPressed()
+{
+	// QT_TODO
+}
+
+void CVisgroupsWidget::onMarkPressed()
+{
+	// QT_TODO
+}
+
+void CVisgroupsWidget::onUpPressed()
+{
+	// QT_TODO
+}
+
+void CVisgroupsWidget::onDownPresed()
+{
+	// QT_TODO
+}
+
+//-----------------------------------------------------------------------------------------//
+
+CPrefabsWidget::CPrefabsWidget( QWidget *pParent ) :
+	QWidget( pParent )
+{
+	auto pWidgetLayout = new QVBoxLayout();
+
+	auto pMoveLayout = new QHBoxLayout();
+	auto pMoveSelLabel = new QLabel( tr( "Move\nSelected:" ), this );
+	m_pToWorldButton = new QPushButton( tr( "toWorld" ), this );
+	m_pToEntityButton = new QPushButton( tr( "toEntity" ), this );
+
+	pMoveLayout->addWidget( pMoveSelLabel );
+	pMoveLayout->addWidget( m_pToWorldButton );
+	pMoveLayout->addWidget( m_pToEntityButton );
+
+	auto pCatLabel = new QLabel( tr( "Categories:" ), this );
+	m_pCategoriesBox = new QComboBox( this );
+	auto pObjLabel = new QLabel( tr( "Objects:" ), this );
+	m_pObjectsBox = new QComboBox( this );
+	m_pObjectsBox->setEditable( true );
+
+	m_pFacesBox = new QSpinBox( this );
+	m_pFacesBox->setMaximum( INT_MAX );
+	m_pFacesBox->setMaximumWidth( 50 );
+
+	m_pCreateButton = new QPushButton( tr( "Create Prefab" ), this );
+
+	pWidgetLayout->addLayout( pMoveLayout );
+	pWidgetLayout->addWidget( pCatLabel );
+	pWidgetLayout->addWidget( m_pCategoriesBox );
+	pWidgetLayout->addWidget( pObjLabel );
+	pWidgetLayout->addWidget( m_pObjectsBox );
+	pWidgetLayout->addWidget( m_pFacesBox, 0, Qt::AlignCenter );
+	pWidgetLayout->addWidget( m_pCreateButton );
+
+	connect( m_pToWorldButton, &QPushButton::released, this, &CPrefabsWidget::onToWorldPressed );
+	connect( m_pToEntityButton, &QPushButton::released, this, &CPrefabsWidget::onToEntityPressed );
+	connect( m_pCreateButton, &QPushButton::released, this, &CPrefabsWidget::onCreatePrefabPressed );
+
+	this->setLayout( pWidgetLayout );
+	this->setFixedWidth( 180 );
+	//this->setFixedSize( this->sizeHint() );
+}
+
+void CPrefabsWidget::onToWorldPressed()
+{
+	// QT_TODO
+}
+
+void CPrefabsWidget::onToEntityPressed()
+{
+	// QT_TODO
+}
+
+void CPrefabsWidget::onCreatePrefabPressed()
+{
+	// QT_TODO
 }

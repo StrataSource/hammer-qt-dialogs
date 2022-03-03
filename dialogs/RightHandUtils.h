@@ -7,6 +7,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QTreeWidget>
+#include <QSpinBox>
 
 namespace ui
 {
@@ -69,5 +70,42 @@ namespace ui
 		QTreeWidget *m_pUserTree;
 		QTreeWidget *m_pAutoTree;
 		QTreeWidget *m_pCordonTree;
+
+		QPushButton *m_pShowButton;
+		QPushButton *m_pEditButton;
+		QPushButton *m_pMarkButton;
+		QPushButton *m_pUpButton;
+		QPushButton *m_pDownButton;
+
+	private:
+		void onShowPressed();
+		void onEditPressed();
+		void onMarkPressed();
+		void onUpPressed();
+		void onDownPresed();
 	};
+
+	//-----------------------------------------------------------------------------------------//
+
+	class CPrefabsWidget : public QWidget
+	{
+		Q_OBJECT
+	public:
+		CPrefabsWidget( QWidget *pParent );
+
+		QPushButton *m_pToWorldButton;
+		QPushButton *m_pToEntityButton;
+		QPushButton *m_pCreateButton;
+
+		QComboBox *m_pCategoriesBox;
+		QComboBox *m_pObjectsBox;
+
+		QSpinBox *m_pFacesBox;
+
+	private:
+		void onToWorldPressed();
+		void onToEntityPressed();
+		void onCreatePrefabPressed();
+	};
+
 } // namespace ui
