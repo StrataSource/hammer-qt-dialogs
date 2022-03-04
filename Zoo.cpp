@@ -60,7 +60,7 @@ static zooDialog_t s_zooDialogs[] =
 	{"Sound Browser",			makeZooDialog<CSoundBrowser>	},
 	{"Options",					makeZooDialog<COptions>			},
 	{"Right hand utils",		makeZooDialog<CRightHandUtils>	},
-	{"Action Bar",				makeZooDialog<CActionsBar>		}
+	{"Action Bar",				makeZooDialog<CActionsBarDialog>}
 };
 static int s_zooDialogCount = sizeof(s_zooDialogs) / sizeof(zooDialog_t);
 
