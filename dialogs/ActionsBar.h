@@ -31,9 +31,8 @@ namespace ui
 	public:
 		CActionsBar( QWidget *pParent, Qt::Orientation orientation = Qt::Horizontal );
 
-		// Todo: Is this name really clear? QWidget already has addAction
-		// so we dont really have any alternatives
-		QAction *addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func );
+		template <class Func>
+		QAction *addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, Func func );
 		void addSeparator();
 
 		// todo: Since we have getToolBar(), is this really needed?

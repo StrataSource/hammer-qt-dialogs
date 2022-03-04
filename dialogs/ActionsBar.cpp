@@ -45,7 +45,8 @@ CActionsBar::CActionsBar( QWidget *pParent, Qt::Orientation orientation ) :
 	m_pToolBar->setOrientation( orientation );
 }
 
-QAction *CActionsBar::addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, const std::function<void()> &func )
+template <class Func>
+QAction *CActionsBar::addButton( const QString &pIconPath, const QString &pToolTip, const bool bCheckable, Func func )
 {
 	if ( !m_pToolBar )
 		return NULL;
@@ -58,7 +59,7 @@ QAction *CActionsBar::addButton( const QString &pIconPath, const QString &pToolT
 
 	m_pToolBar->addAction( pButton );
 
-	connect( pButton, &QAction::triggered, this, func );
+	connect( pButton, &QAction::triggered, this, std::move(func) );
 
 	// Return it, just in case we need a pointer to the action
 	return pButton;
