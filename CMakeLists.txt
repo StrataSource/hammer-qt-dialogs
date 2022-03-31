@@ -73,6 +73,8 @@ set(SRC
 	dialogs/MoveToVisgroup.cpp
 	dialogs/SoundBrowser.h
 	dialogs/SoundBrowser.cpp
+	dialogs/RightHandUtils.h
+	dialogs/RightHandUtils.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
