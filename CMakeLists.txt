@@ -75,6 +75,8 @@ set(SRC
 	dialogs/SoundBrowser.cpp
 	dialogs/RightHandUtils.h
 	dialogs/RightHandUtils.cpp
+	dialogs/ActionsBar.h
+	dialogs/ActionsBar.cpp
 
 	# Widgets 
 	widgets/FileSelector.h
